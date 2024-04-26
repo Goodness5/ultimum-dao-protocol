@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{background-color: #000; color:#fff}
+
+@media screen and (max-width:1007px) {
+    .headerdivforlarge{display: none;} 
+}
+
+@media screen and (min-width:1007px) {
+    .headerdivforsmallandmedium{display: none;}
+}
+
+  .menuitems{transition: 0.3s ease-in-out;}
+  .menuitems:hover{transform:scale3d(1.1,1.1,1.1)}
+
+  .menuitems2{transition: 0.3s ease-in-out;}
+  .menuitems2:hover{transform:scale3d(1.05,1.05,1.05)}
+
+  .menuitems3{transition: 0.3s ease-in-out;cursor: pointer;}
+  .menuitems3:hover{font-size: 110%;}
+
+  .menuitems4{transition: 0.3s ease-in-out;cursor: pointer;}
+  .menuitems4:hover{font-size: 120%;}
+
+  .connectwalletbutton{transition: 0.3s ease-in-out;}
+  .connectwalletbutton:hover{background: #002;}
+  
+  .disconnectwalletbutton{transition: 0.3s ease-in-out;}
+  .disconnectwalletbutton:hover{background-color: #001;}
+
+   button{transition: 0.3s ease-in-out;}
+  .generalbutton{transition: 0.3s ease-in-out;}
+  .generalbutton:hover{background-color: #602; transform: scale3d(0.95,0.95,0.95);}
+  .ecobutton:hover + .docbutton + .daobutton{filter: blur(3px);}
+  .ecobutton:hover + .daobutton{filter: blur(3px);}
+  .generalbutton2{transition: 0.3s ease-in-out;}
+  .generalbutton2:hover{background-color: #000; filter: blur(1px); transform: scale3d(0.95,0.95,0.95);}
+
+  @media screen and (min-width:1007px) {
+    .firstsectiondiv{background-size:120%; background-repeat: no-repeat;}
+   }
+  
+   @media screen and (max-width:1007px) {
+    .firstsectiondiv{background-position-x: 15%; background-position-y: 30%; background-repeat: no-repeat;}
+   }
+
+   @media screen and (min-width:1007px) {
+    .homepageswapdiv{background-size: 120%; background-position-x: 45%;}
+   }
+  
+   @media screen and (max-width:1007px) {
+    .homepageswapdiv{background-size: 120%; background-position-x: 50%;}
+   }
+
+   .socialcols1 {transition: 0.3s ease-in-out;}
+   .socialcols1:hover{transform: scale3d(1.05, 1.05, 1.05);}
+   .socialcols2 {transition: 0.3s ease-in-out;}
+   .socialcols2:hover{transform: scale3d(1.05, 1.05, 1.05);}
+   .socialcols3 {transition: 0.3s ease-in-out;}
+   .socialcols3:hover{transform: scale3d(1.05, 1.05, 1.05);}
+   .socialcols4 {transition: 0.3s ease-in-out;}
+   .socialcols4:hover{transform: scale3d(1.05, 1.05, 1.05);}
+  
+   .socialcols1{background-image: linear-gradient(45deg, rgba(100,0,0,0.8), blue, rgba(0,200,0,0.1));}
+   .socialcols2{background-image: linear-gradient(45deg, rgba(0,0,200,0.5), rgba(0,0,100,0.5), rgba(0,200,0,0.1));}
+   .socialcols3{background-image: linear-gradient(45deg, rgba(0,0,200,0.5), rgba(200,200,200,0.5), rgba(250,250,250,0.9), rgba(0,0,0,0.5));}
+   .socialcols4{background-image: linear-gradient(45deg, rgba(0,0,230,0.8), rgba(0,0,100,0.9), rgba(200,200,200,0.3));}
+
+   .loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #502;
+    mask: radial-gradient(circle closest-side at 50% 40%,#0000 94%, #000);
+    transform-origin: 50% 40%;
+    animation: l25 0.5s infinite linear;
+  }
+  
+  @keyframes l25 {
+    100% {transform: rotate(1turn)}
+  }
+
+  .slidingcryptodatadiv{background-image: linear-gradient(45deg, #00f, #001, #100, #502, #010, #2b2202);}
+
+  .cryptochartdiv{background-image: linear-gradient(45deg, #00f, #001, #100, #502, #010, #2b2202);}
+
+  @keyframes displayAnimation1 {0%{display: block;} 19%{display: block;} 20%{display: none;}  100%{display: none;}}
+  @keyframes displayAnimation2 {0%{display: none;}  20%{display: none} 21%{display: block;} 39%{display: block;} 40%{display: none;} 100%{display: none;}}
+  @keyframes displayAnimation3 {0%{display: none;}  40%{display: none;} 41%{display: block;} 59%{display: block} 60%{display: none} 100%{display: none;}}
+  @keyframes displayAnimation4 {0%{display: none;}  60%{display: none;} 61%{display: block;} 79%{display: block} 80%{display: none} 100%{display: none;}}
+  @keyframes displayAnimation5 {0%{display: none;}  80%{display: none;} 81%{display: block;} 100%{display: block;}}
+  .info1{animation: displayAnimation1 60s linear infinite;}
+  .info2{animation: displayAnimation2 60s linear infinite;}
+  .info3{animation: displayAnimation3 60s linear infinite;}
+  .info4{animation: displayAnimation4 60s linear infinite;}
+  .info5{animation: displayAnimation5 60s linear infinite;}
+
+ .teamcols1:hover .teaminfo{transform: translate3d(0, -150%, 0); background:rgba(70,0,20,0.8); padding: 0.4cm;margin-bottom: -3cm; margin-right: 1cm; box-shadow: 2px 2px 10px 2px #000;}
+ .teaminfo{box-shadow:2px 2px 10px 1px #502}
+ @keyframes developersAnimation{0%{} 100%{box-shadow: 2px 2px 8px 4px #502;}}
+ .developersimages{animation: developersAnimation 2s alternate infinite;}
+
+@media screen and (max-width:1007px) {
+   .dashboardmenu{display: none;}
+   .dashboarditems{width:100%}
+}
+
+@media screen and (min-width:1007px) {
+  .dashboardmenu{display: inline-block; width: 15%;}
+  .dashboarditems{width:85%; display: inline-block; float:right;}
+}
+ 
+ @keyframes dAppAnimation{0%{} 100%{box-shadow: 2px 2px 7px 4px #502;}}
+ .dAppdivs{animation: dAppAnimation 2s alternate infinite;}
+
+ @keyframes blurAnimation1 {0%{transform: translate3d(0, -20px, -40px)} 40%{filter: blur(50px);} 55%{transform: translate3d(0, 20px, 0)} 75%{ transform: scale3d(1.2,1.2,1.2)} 100%{transform: translate3d(20px, 0px, 0)}}
+ @keyframes blurAnimation2 {0%{transform: translate3d(-40px, -15px, -40px)} 35%{transform: translate3d(30px, 75px, 0)} 65%{ transform: scale3d(1.2,1.2,1.2)} 85%{transform: translate3d(40px, -20px, 0)} 100%{filter: blur(25px);}}
+ .blurimage1{transition: 0.5s ease-in-out; filter: blur(20px); animation: blurAnimation1 10s alternate infinite;}
+ .blurimage1:hover{filter:none;}
+ .blurimage2{transition: 0.5s ease-in-out; filter: blur(5px); animation: blurAnimation2 10s alternate infinite;}
+ .blurimage2:hover{filter:none;}
+
+ @media screen and (min-width:1007px) {
+  .dashboardmenulg{width:17%;}
+}
+
+@media screen and (max-width:1007px) {
+  .dashboardmenulg{display: none;}
+}
+
+@media screen and (min-width:1007px) {
+  .ecosystemcomponentsarea{width:83%; margin-left: 17%;}
+}
+
+@media screen and (max-width:1007px) {
+  .ecosystemcomponentsarea{width:100%}
+}
+
+@media screen and (min-width:1007px) {
+  .dashboardsmallmenubar{display: none;}
+}
+
+@media screen and (max-width:1007px) {
+  .dashboardsmallmenubar{display: block;}
+}
+
+@media screen and (min-width:1007px) {
+  .dashboardmenusm{display: none;}
+}
+
+@media screen and (max-width:1007px) {
+  .dashboardmenusm{display: block;}
+}
+
+.closedashboardsmallmenu{filter: blur(3px); transition: 0.3s ease-in-out;}
+.closedashboardsmallmenu:hover{filter: none;}
+
+
+
+ @keyframes pricefeedAnimation{0%{} 100%{box-shadow: 2px 2px 7px 4px #fff;}}
+ .pricefeeddivs{animation: pricefeedAnimation 2s alternate infinite;}
+ .switchbutton{transition: 0.5s ease-in-out;}
+ .switchbutton:hover{transform: rotate3d(0,0,1,180deg); font-size: 90%; background: #eee; color: #502;}

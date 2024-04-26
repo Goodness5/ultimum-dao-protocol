@@ -169,3 +169,57 @@ interface ISwapper {
 
     function getAllLiquidityPairs() external view returns (liquidity[] memory);
 }
+
+
+
+interface IP2PLending {
+    struct Loan {
+        uint amount;
+        uint interest;
+        uint duration;
+        uint repaymentAmount;
+        uint fundingDeadline;
+        uint collateralAmount;
+        address borrower;
+        address payable lender;
+        address collateral;
+        bool isCollateralErc20;
+        bool active;
+        bool repaid;
+    }
+
+    function getAllLoans() external view returns (Loan[] memory);
+
+    function createLoan(
+        uint _amount,
+        uint _interest,
+        uint _duration,
+        uint _collateralAmount,
+        address _collateral,
+        bool _isERC20
+    ) external payable;
+
+    function fundLoan(uint _loanId) external payable;
+
+    function repayLoan(uint _loanId) external payable;
+
+    function claimCollateral(uint _loanId) external;
+    function addCollateral(address _collateral) external;
+
+    function withdrawFunds(uint _loanId) external;
+
+    function getLoanInfo(uint _loanId) external view returns (
+        uint amount,
+        uint interest,
+        uint duration,
+        uint repaymentAmount,
+        uint fundingDeadline,
+        uint collateralAmount,
+        address borrower,
+        address payable lender,
+        address collateral,
+        bool isCollateralErc20,
+        bool active,
+        bool repaid
+    );
+}

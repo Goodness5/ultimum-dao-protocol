@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 import {IERC20} from "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import {IERC721} from "../lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol";
-import {ITreasury, IStakERC20, IUltNft, ISwapper} from "./interfaces.sol";
+import {ITreasury, IStakERC20, IUltNft, ISwapper, IP2PLending} from "./interfaces.sol";
 
 contract DAO {
     struct Proposal {
@@ -36,6 +36,7 @@ contract DAO {
     address public UltErc20;
     address public stakeErc20;
     address public swap;
+    address public p2plending;
 
     event ProposalCreated(uint indexed id, string description);
     event Voted(uint indexed proposalId, address indexed voter, bool vote);
@@ -48,7 +49,8 @@ contract DAO {
         address _nft,
         address _erc20,
         address _staking,
-        address _swap
+        address _swap,
+        address _p2plending
     ) {
         quorum = _quorum;
         treasury = _treasury;
@@ -56,6 +58,7 @@ contract DAO {
         UltErc20 = _erc20;
         stakeErc20 = _staking;
         swap = _swap;
+        p2plending=_p2plending;
     }
 
     modifier onlyMember() {
@@ -191,6 +194,7 @@ contract DAO {
         return _proposal.forVotes > _proposal.againstVotes;
     }
 
+
     function closeProposal(
         uint _id
     ) public proposal_time_out(_id, 10 minutes) onlyMember {
@@ -228,6 +232,23 @@ contract DAO {
             .capital;
         require(stakedbalance >= 1000 ether, "not qualified");
         IUltNft(UltNft).safeMint(msg.sender, _uri);
+    }
+
+    function addAcceptedCollateral(
+        uint _proposalId,
+        address _collateraladdress
+    ) external validateAction(_proposalId) onlyMember {
+        require(
+            proposals[_proposalId].status,
+            "Proposal does not exist or is not active"
+        );
+        require(
+            !proposals[_proposalId].executed,
+            "Proposal does not exist or is not active"
+        );
+        executeProposal(_proposalId);
+
+        IP2PLending(p2plending).addCollateral(_collateraladdress);
     }
 
     function addSwappableToken(

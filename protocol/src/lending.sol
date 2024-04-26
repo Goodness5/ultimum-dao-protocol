@@ -8,9 +8,15 @@ import "../lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol";
 contract P2PLending is Ownable {
     constructor(
         address _initialowner,
-        address _treasuryaddr
+        address _treasuryaddr,
+        address ult,
+        address usdt,
+        address dai
     ) Ownable(_initialowner) {
         treasuryAddress = _treasuryaddr;
+        _addCollateral(ult);
+        _addCollateral(usdt);
+        _addCollateral(dai);
     }
 
     // The minimum and maximum amount of ETH that can be loaned
@@ -39,8 +45,11 @@ contract P2PLending is Ownable {
 
     mapping(uint => Loan) public loans;
     mapping(address => uint) public defaulters;
+    mapping(address=>bool) public accepteddCollaterals;
+    address[] public accepted_collaterals;
     uint public loanCount;
     address public treasuryAddress;
+    address public dao;
     uint public totalServiceCharges;
     event LoanCreated(
         uint loanId,
@@ -56,11 +65,22 @@ contract P2PLending is Ownable {
     event ServiceFeeDeducted(uint loanId, uint amount);
     event ServiceChargesWithdrawn(address owner, uint amount);
     event CollateralClaimed(uint loanId, address lender);
+    event CollateralAdded(address collateral);
 
     modifier onlyActiveLoan(uint _loanId) {
         require(loans[_loanId].active, "Loan is not active");
         _;
     }
+    modifier isCollateral(address _addr){
+        require(accepteddCollaterals[_addr]==true, "collateral not acceptable");
+        _;
+    }
+
+       modifier onlyDao(address _caller){
+        require(_caller == dao, "unauthorized");
+        _;
+    }
+
 
     modifier onlyBorrower(uint _loanId) {
         require(
@@ -70,6 +90,15 @@ contract P2PLending is Ownable {
         _;
     }
 
+    function addCollateral(address _collateral) public onlyDao(msg.sender){
+           _addCollateral(_collateral);
+            emit CollateralAdded(_collateral);
+    }
+
+    function _addCollateral(address _collateral) internal{
+            accepteddCollaterals[_collateral] = true;
+            accepted_collaterals.push(_collateral);   
+    }
     function getAllLoans() external view returns (Loan[] memory) {
         Loan[] memory allLoans = new Loan[](loanCount);
         for (uint i = 0; i < loanCount; i++) {
@@ -85,7 +114,7 @@ contract P2PLending is Ownable {
         uint _collateralamount,
         address _collateral,
         bool _isERC20
-    ) external payable {
+    ) external payable isCollateral(_collateral) {
         require(
             _amount >= MIN_LOAN_AMOUNT && _amount <= MAX_LOAN_AMOUNT,
             "Loan amount must be between MIN_LOAN_AMOUNT and MAX_LOAN_AMOUNT"
