@@ -5,7 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 
-export default function CryptoChart() {
+export default function ETHChart() {
 
     
     const scriptRef = useRef(null);
@@ -18,54 +18,9 @@ export default function CryptoChart() {
       {
         "symbols": [
           [
-            "BINANCE:ETHUSDT|1D"
-          ],
-          [
-            "BINANCE:BTCUSDT|1D"
-          ],
-          [
-            "BINANCE:BNBUSDT|1D"
-          ],
-          [
-            "BINANCE:AAVEUSDT|1D"
-          ],
-          [
-            "BINANCE:SOLUSDT|1D"
-          ],
-          [
-            "BINANCE:FETUSDT|1D"
-          ],
-          [
-            "BINANCE:PEPEUSDT|1D"
-          ],
-          [
-            "BINANCE:ARBUSDT|1D"
-          ],
-          [
-            "BINANCE:USDCUSDT|1D"
-          ],
-          [
-            "BINANCE:MATICSDT|1D"
-          ],
-          [
-            "BINANCE:LINKUSDT|1D"
-          ],
-          [
-            "BINANCE:UNIUSDT|1D"
-          ],
-          [
-            "BINANCE:TWTUSDT|1D"
-          ],
-          [
-            "BINANCE:CAKEUSDT|1D"
-          ],
-          [
-            "BINANCE:DOGEUSDT|1D"
-          ],
-          [
-            "BINANCE:SHIBUSDT|1D"
+            "CRYPTO:ETHUSD|1D"
           ]
-        ], 
+        ],
         "chartOnly": false,
         "width": "100%",
         "height": 500,
@@ -104,7 +59,7 @@ export default function CryptoChart() {
   
       scriptRef.current = script;
   
-      const tradingViewContainer = document.getElementById('tradingview-widget-container2');
+      const tradingViewContainer = document.getElementById('tradingview-widget-container3');
   
       if (tradingViewContainer) {
         tradingViewContainer.appendChild(script);
@@ -120,15 +75,14 @@ export default function CryptoChart() {
     useEffect(() => {
         AOS.init();
       }, [])
-      
     return (
         <div>
            
-            <div className="cryptochartdiv rounded-xl" style={{boxShadow:"2px 2px 10px 2px #f00"}}>
+            <div className="ethchartdiv rounded-xl bg-[#000]" style={{boxShadow:"2px 2px 2px 2px #333"}}>
             <Helmet>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async></script>
             </Helmet>
-            <div id="tradingview-widget-container2"></div>
+            <div id="tradingview-widget-container3"></div>
             </div>
 
         </div>

@@ -5,70 +5,23 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 
-export default function CryptoChart() {
+export default function BlockchainInsights() {
 
     
     const scriptRef = useRef(null);
 
     useEffect(() => {
       const script = document.createElement('script');
-      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
       script.async = true;
       script.innerHTML = `
       {
-        "symbols": [
-          [
-            "BINANCE:ETHUSDT|1D"
-          ],
-          [
-            "BINANCE:BTCUSDT|1D"
-          ],
-          [
-            "BINANCE:BNBUSDT|1D"
-          ],
-          [
-            "BINANCE:AAVEUSDT|1D"
-          ],
-          [
-            "BINANCE:SOLUSDT|1D"
-          ],
-          [
-            "BINANCE:FETUSDT|1D"
-          ],
-          [
-            "BINANCE:PEPEUSDT|1D"
-          ],
-          [
-            "BINANCE:ARBUSDT|1D"
-          ],
-          [
-            "BINANCE:USDCUSDT|1D"
-          ],
-          [
-            "BINANCE:MATICSDT|1D"
-          ],
-          [
-            "BINANCE:LINKUSDT|1D"
-          ],
-          [
-            "BINANCE:UNIUSDT|1D"
-          ],
-          [
-            "BINANCE:TWTUSDT|1D"
-          ],
-          [
-            "BINANCE:CAKEUSDT|1D"
-          ],
-          [
-            "BINANCE:DOGEUSDT|1D"
-          ],
-          [
-            "BINANCE:SHIBUSDT|1D"
-          ]
-        ], 
+        "feedMode": "market",
+        "market": "crypto",
+        "displayMode": "Adaptive",
         "chartOnly": false,
         "width": "100%",
-        "height": 500,
+        "height": 600,
         "locale": "en",
         "colorTheme": "dark",
         "autosize": false,
@@ -87,24 +40,16 @@ export default function CryptoChart() {
         "chartType": "area",
         "maLineColor": "#2962FF",
         "maLineWidth": 1,
-        "isTransparent": true,
+        "isTransparent": false,
         "maLength": 9,
         "lineWidth": 1,
-        "lineType": 0,
-        "dateRanges": [
-          "1d|1",
-          "1m|30",
-          "3m|60",
-          "12m|1D",
-          "60m|1W",
-          "all|1M"
-        ]
+        "lineType": 0
       }
       `;
-  
+ 
       scriptRef.current = script;
   
-      const tradingViewContainer = document.getElementById('tradingview-widget-container2');
+      const tradingViewContainer = document.getElementById('tradingview-widget-container4');
   
       if (tradingViewContainer) {
         tradingViewContainer.appendChild(script);
@@ -124,11 +69,11 @@ export default function CryptoChart() {
     return (
         <div>
            
-            <div className="cryptochartdiv rounded-xl" style={{boxShadow:"2px 2px 10px 2px #f00"}}>
+            <div className="blockchaininsightsdiv" style={{border:"3px solid #00f"}}>
             <Helmet>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async></script>
             </Helmet>
-            <div id="tradingview-widget-container2"></div>
+            <div id="tradingview-widget-container4"></div>
             </div>
 
         </div>

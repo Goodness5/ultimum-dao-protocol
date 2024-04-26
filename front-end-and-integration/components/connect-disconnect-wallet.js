@@ -30,6 +30,7 @@ export default function ConnectDisconnectWallet () {
 
      // Set the wallet address as a cookie on the browser
      document.cookie = `walletaddresscookie1=${encodeURIComponent(walletAddress)}; secure; max-age=${60 * 60 * 24}; sameSite=strict; path=/`;
+     window.location.reload();
     } catch (error) {
       console.log('Error connecting to StarkNet:', error.message);
     }
@@ -59,7 +60,7 @@ export default function ConnectDisconnectWallet () {
    }
 };
   confirmCookies();
-}, [setConnectedWallet, setConnectWallet, setTheWalletaddress]); 
+}, []); 
 
 
   //to disconnect our wallet
@@ -70,6 +71,7 @@ export default function ConnectDisconnectWallet () {
       // Delete the wallet address cookie
     document.cookie = 'walletaddresscookie1=; max-age=0; path=/';
   } 
+  
     return (
         <div>
         {connectWallet ? (<span className="bg-[#001] px-[0.5cm] py-[0.2cm] text-center font-[600] rounded-full cursor-pointer connectwalletbutton" style={{border:"2px solid #502"}} onClick={(e) => connecttheWallet(e)}><img src="images/wallet.png" width="23" style={{display:"inline-block"}} /> &nbsp; Connect wallet</span>) : (<div></div>)}

@@ -60,15 +60,16 @@ export default function Header(){
       </div>
       </div>)
       }
-      <Link href="/#forum"><button className='ml-[1cm] menuitems'>Forum</button><img src="images/discussion.png" width="18" className='ml-[0.2cm]' style={{display:"inline-block"}}/></Link>
-      <Link href="/#community"><button className='ml-[1cm] menuitems'>Community</button><img src="images/users.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></Link>
+      <Link href="/blog"><button className='ml-[1cm] menuitems'>Blog</button><img src="images/blog.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></Link>
+      <Link href="/#community"><button className='ml-[1cm] menuitems'>Community</button><img src="images/community.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></Link>
       <Link href="/#insights"><button className='ml-[1cm] menuitems'>Insights</button><img src="images/insights.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></Link>
       <Link href="/#developers"><button className='ml-[1cm] menuitems'>Developers</button><img src="images/programmer.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></Link>
+      <Link href="/adminsignin"><button className='ml-[1cm] menuitems'>Admin area</button><img src="images/admin.png" width="23" className='ml-[0.2cm]' style={{display:"inline-block"}}/></Link>
       </div>
       <Link href="/#ultimumcomponents">
       <div className='ml-[1.2cm]' style={{display:"inline-block"}}>
-      <span className='text-[#fff] font-[600]'>Most efficient DAO, swap, stake, token, lend/borrow platform on Base</span>
-      <img src="images/base.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}} />
+      <span className='text-[#fff] font-[600]'>DeFi, DAO, swap, stake, lend/borrow protocol on Scroll</span>
+      <img src="images/scroll.png" width="20" className='ml-[0.2cm] rounded-[100%]' style={{display:"inline-block"}} />
       </div>
       </Link>
       <div className="ml-[1cm] mb-[0.2cm]" style={{display:"inline-block"}}>
@@ -102,17 +103,18 @@ export default function Header(){
        </div>
        </div>)
       }
-       <Link href="/#forum" onClick={(e) => changemenubehaviour2(e)}><div className='py-[0.5cm] menuitems4' style={{borderBottom:"3px solid #000"}}>Forum <img src="images/discussion.png" width="18" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div></Link>
-       <Link href="/#community" onClick={(e) => changemenubehaviour2(e)}><div className='py-[0.5cm] menuitems4' style={{borderBottom:"3px solid #000"}}>Community <img src="images/users.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div></Link>
+       <Link href="/blog" onClick={(e) => changemenubehaviour2(e)}><div className='py-[0.5cm] menuitems4' style={{borderBottom:"3px solid #000"}}>Blog <img src="images/blog.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div></Link>
+       <Link href="/#community" onClick={(e) => changemenubehaviour2(e)}><div className='py-[0.5cm] menuitems4' style={{borderBottom:"3px solid #000"}}>Community <img src="images/community.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div></Link>
        <Link href="/#insights" onClick={(e) => changemenubehaviour2(e)}><div className='py-[0.5cm] menuitems4' style={{borderBottom:"3px solid #000"}}>Insights <img src="images/insights.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div></Link>
        <Link href="/#developers" onClick={(e) => changemenubehaviour2(e)}><div className='py-[0.5cm] menuitems4' style={{borderBottom:"3px solid #000"}}>Developers <img src="images/programmer.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div></Link>
+       <Link href="/adminsignin" onClick={(e) => changemenubehaviour2(e)}><div className='py-[0.5cm] menuitems4' style={{borderBottom:"3px solid #000"}}>Admin area <img src="images/admin.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div></Link>
        
        <div className="text-center pt-[1cm]" style={{zIndex:"9999"}}>
         <ConnectDisconnectWallet />
        </div>
        <div className='mt-[1cm]' style={{display:"block"}}>
        <Link href="/" onClick={(e) => changemenubehaviour2(e)}><img src="images/logo.png" width="140" style={{display:"inline-block"}}/></Link>
-       <Link href="https://base.org" onClick={(e) => changemenubehaviour2(e)}><img src="images/base.png" width="30" className='ml-[0.5cm]' style={{display:"inline-block"}}/></Link>
+       <Link href="https://scroll.io" onClick={(e) => changemenubehaviour2(e)}><img src="images/scroll.png" width="23" className='ml-[0.5cm] rounded-[100%]' style={{display:"inline-block"}}/></Link>
        </div>
       </div>
       </div>

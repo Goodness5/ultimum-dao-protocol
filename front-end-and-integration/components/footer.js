@@ -62,23 +62,22 @@ export default function Footer () {
       <form onSubmit={(e) => onSubmitForm(e)}>
       <input type="email" id="email" name="email" value={values.email} onChange={handleInput} required className="outline-none w-[100%] placeholder-[#555] text-[#000] p-[0.3cm] rounded-md" placeholder='Please input your email address' />
       {success ? (<button className="px-[0.4cm] py-[0.2cm] bg-[#040] w-[100%] mt-[0.3cm] text-[#fff] rounded-md">Success! <img src="images/check.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}} /></button>) : 
-       (<button type="submit" className="px-[0.4cm] py-[0.2cm] bg-[#502] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Subscribe</button>)}
+       (<button type="submit" className="text-center py-[0.2cm] bg-[#502] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Subscribe</button>)}
       </form>
     </div>
     <div className='grid-cols-1 m-[auto]'>
       <div className='text-[120%] text-[#fff] mb-[0.2cm] font-[500]'>Our partners</div>
-      <Link href="https://braindao.org"><img src="images/brainLogo.svg" width="50" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link>
       <Link href="https://web3bridge.com"><img src="images/web3bridge.png" width="40" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link>
-      <Link href="https://uniswap.org"><img src="images/uniswap.png" width="40" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link>
       <Link href="https://chain.link"><img src="images/chainlink.png" width="40" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link>
       <Link href="https://tradingview.com"><img src="images/tradingview.png" width="40" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link>
+      <Link href="https://openzeppelin.com"><img src="images/openzeppelin.png" width="40" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link>
     </div>
     </div>
     <div className='mb-[1cm]' style={{borderBottom:"2px solid #502"}}></div>
     <div className='text-center'>
         <div className='text-[#fff] text-[120%] mb-[0.2cm]'>
-          <span><span className="font-[500]">Ultimum</span> - The most efficient protocol on Base featuring a DAO, swap dApp, staking dApp, token, treasury, lending/borrowing</span>
-          <Link href="https://base.org"><img src="images/base.png" width="30" className='ml-[0.3cm]' style={{display:"inline-block"}} /></Link>
+          <span><span className="font-[500]">Ultimum</span> - The most efficient DeFi protocol on Scroll with a DAO, swap dApp, staking dApp, token, treasury, lending/borrowing dApp</span>
+          <Link href="https://scroll.io"><img src="images/scroll.png" width="30" className='ml-[0.3cm] rounded-[100%]' style={{display:"inline-block"}} /></Link>
         </div>
        <div className='text-[150%] text-[#fff]'>Copyright &copy; {new Date().getFullYear()}</div>
        </div>

@@ -119,6 +119,7 @@ export default function SlidingCryptoData() {
     useEffect(() => {
         AOS.init();
       }, [])
+      
     return (
         <div>
             

@@ -9,6 +9,8 @@ import Footer from '@/components/footer';
 import { useRouter } from 'next/router';
 import SlidingCryptoData from '@/components/slidingcryptodata';
 import CryptoChart from '@/components/cryptochart';
+import BlockchainInsights from '@/components/blockchaininsights';
+import UltimumHomeBlog from '@/components/homeblog';
 
 export default function Home(){
   useEffect(() => {
@@ -43,23 +45,10 @@ export default function Home(){
     setAllowAutoNav(false)
   }
 
-  //useState and logic for navigation to IQ Social
-  const [navigateToIQSocial, setnavigateToIQSocial] = useState()
-  useEffect(()=> {
-      const proceedToIQSocial = navigateToIQSocial && 
-      setTimeout(() => {
-        router.push("https://iq.social")
-        setnavigateToIQSocial(false)
-      }, 5000)
-    // Cleanup function to clear the timeout when the component is unmounted or auto navigation is stopped
-    return () => clearTimeout(proceedToIQSocial);
-  }, [navigateToIQSocial, router])
-
-
   return (
     <>
     <Head>
-   <title>Ultimum Protocol - The most efficient protocol on Base featuring a DAO, swap dApp, Staking dApp, token, treasury, lending/borrowing</title>
+   <title>Ultimum Protocol - The most efficient protocol on Polygon featuring a DAO, swap dApp, Staking dApp, token, treasury, lending/borrowing</title>
    <link rel="shortcut icon" href="/favicon.ico" />
    </Head>
    <div>
@@ -68,39 +57,38 @@ export default function Home(){
 
 
    <div className='lg:mx-[-8%] mx-[-5%] pb-[2cm] firstsectiondiv' style={{backgroundImage:"url(images/bg.jpg)", transition:"0.3s ease-in-out"}}>
-   <div className='text-center text-[180%] lg:text-[300%] md:text-[250%] pt-[1.5cm] font-[500]'>Mass adoption of token-governed technologies</div>
+   <div className='text-center text-[180%] lg:text-[250%] md:text-[200%] pt-[1.5cm] font-[500]'>Mass Adoption of DAO-governed Technologies on Scroll</div>
    <div className='mt-[1cm] text-center lg:text-[140%] text-[120%] lg:mx-[20%] md:mx-[10%] mx-[5%] p-[1cm] lg:px-[2cm] text-[#ccc] bg-[rgba(0,0,0,0.9)]' style={{border:"1px solid #502"}}>
     <div data-aos="fade-in" className='info1' style={{transition:"0.5s ease-in-out"}}>
      Ultimum DAO - Using the DAO as a powerful tool, Ultimum protocol users are able to engage in governance and that includes but not limited to decision making, 
      creation of proposals, view proposal details and voting activities to steer the ecosystem forward. This democratic approach ensures transparency and decentralisation in the ecosystem.
-     Become an active member of the DAO to enjoy full Ultimum benefits. 
-     To join DAO, please ensure to obtain the Ultimum NFT which symbolizes your membership of the DAO. 
+     Become an active member of the DAO to enjoy full Ultimum benefits. To join DAO, please ensure to obtain the Ultimum NFT which symbolizes your membership of the DAO. 
     </div>
     <div data-aos="fade-in" className='info2' style={{transition:"0.5s ease-in-out"}}>
      Time-framing (Staking) - Ultimum Protocol is driving the blockchain sector into the self-banking age with actual advancements, and thus lets you earn smart money in a variety of ways.
-     Among them is the time-framing method of staking where you experience full custody of your tokens without fear of money being locked up or fear of assets being lost.
+     Among them is the time-framing method of staking where you experience full flexibility of your tokens without fear of money being locked up or fear of assets being lost.
       Time-frame your Ultimum tokens (ULT) over a set period chosen by you to gain instant huge rewards from the ecosystem. Ultimum Protocol will use this new technology to more 
       properly communicate value, allowing you to better control your financial future and capitalize on the value of your money over time.
     </div>
     <div data-aos="fade-in" className='info3' style={{transition:"0.5s ease-in-out"}}>
-      Swap dApp - With an Ethereum Layer 2, ChainLink Oracle integration and user-first approach, our users experience decentralized finance and can therefore use the Ultimum Protocol swap dApp to swap a variety of 
-      supported tokens with low gas fees (10x lower than Ethereum). 
-      Our swap dApp is designed to provide the best user experience and interface to our users. Ensure you have set network to the Base Layer 2 network and enjoy a seamsless dApp experience.
+      Swap dApp - With a ChainLink Oracle integration and user-first approach, our users experience decentralized finance and can therefore use the Ultimum Protocol swap dApp to swap a variety of 
+      supported tokens with low gas fees. New tokens are added upon approval by the DAO. Our swap dApp is DAO-governed and designed to provide the best user experience and interface to our users.
     </div>
     <div data-aos="fade-in" className='info4' style={{transition:"0.5s ease-in-out"}}>
-      Lending/Borrowing - Using the Uniswap V2 interface, our users can participate in lending/borrowing activities of supported tokens. When you lend to Ultimum, you get rewarded hugely from the 
-      Ultimum pool (your funds are secured with our security algorithm). When you borrow from Ultimum, ensure to present a collateral and pay back with interest in bits till you can 
-      fully pay the amount. Participate in Ultimum DAO governance to determine the next supported token.
+      P2P Lending/Borrowing - Our users can participate in lending/borrowing activities of supported tokens. When you lend to Ultimum, you get rewarded hugely from the 
+      Ultimum pool (your funds are secured with our well audited security algorithm). When you borrow from Ultimum, ensure to present a collateral and pay back with interest. 
+      Participate in Ultimum DAO governance to determine the next supported token.
     </div>
     <div data-aos="fade-in" className='info5' style={{transition:"0.5s ease-in-out"}}>
-    Treasury/Token - The Ultimum token (ULT) is backed by the Ultimum treasury. The Ultimum treasury ensures effective management of the Ultimum token (ULT) and liquidity and minimize risks. 
+    Treasury/Token - The Ultimum token (ULT) is the native token of the Ultimum Protocol and is backed by the Ultimum treasury. With a clear go-to-market strategy, the Ultimum 
+    treasury ensures effective management of the Ultimum token (ULT) and liquidity and minimize risks. 
     This treasury will also optimize financial operations that support product development. If per adventure, ULT goes below 100% of its initial value during the bear market, the treasury 
-    acts as a liquidity provider to manage the token price and ensure its stability across all platforms.
+    acts as a liquidity provider to manage the token price and ensure its stability across all platforms. All trading fees from the Ultimum dApps also go to the treasury.
     </div>
    </div>
    <div className='mt-[1cm] text-center' style={{transition:"0.3s ease-in-out"}}>
     <Link href="/dashboard"><button className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton ecobutton' style={{border:"2px solid #502"}}>Explore Ecosystem <img src="images/blockchain.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link>
-    <Link href="https://github.com/icemedia001/Ultimum-Protocol"><button className='m-[0.2cm] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton docbutton' style={{border:"2px solid #502"}}>Documentation <img src="images/documentation.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link>
+    <Link href="https://github.com/Goodness5/ultimum-protocol"><button className='m-[0.2cm] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton docbutton' style={{border:"2px solid #502"}}>Documentation <img src="images/documentation.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link>
     <Link href="/dashboard"><button className='m-[0.2cm] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton daobutton' style={{border:"2px solid #502"}}>Ultimum DAO <img src="images/dao.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link>
    </div>
    {allowAutoNav ? (<div className='text-center mt-[1cm]'>You will be automatically navigated to the dashboard in {count} seconds....</div>) : 
@@ -111,7 +99,7 @@ export default function Home(){
    </div>
 
 
-   <div className='slidingcryptodatadiv lg:mx-[-7.8%] mx-[-5%]' style={{boxShadow:"2px 2px 3px 2px #00f"}}>
+   <div className='slidingcryptodatadiv lg:mx-[-8%] mx-[-5%]'>
     <SlidingCryptoData />
    </div>
 
@@ -120,8 +108,8 @@ export default function Home(){
     <div className='grid lg:grid-cols-3 grid-cols-1 gap-4'>
       <div className='grid-cols-1 lg:col-span-2 col-span-3'>
       <div className='lg:h-[15.85cm] h-[7cm] rounded-xl lg:p-[1cm] p-[0.5cm] homepageswapdiv' style={{backgroundImage:"url(images/ultimumswap.jpg)", boxShadow:"2px 2px 10px 1px #502"}}>
-        <div className='lg:text-[200%] text-[150%] lg:mt-[10%] mt-[3%] text-[#fff] font-[500]'>Best Layer 2 swap <br /><span className='lg:text-[70%] text-[60%] text-[#ccc]'>(ChainLink Oracles integrated)</span></div>
-        <div className='lg:text-[400%] text-[200%] mt-[3%] text-[#eee] font-[500]'>Live Now</div>
+        <div className='lg:text-[200%] text-[150%] lg:mt-[10%] mt-[3%] text-[#fff] font-[500]'>Best Swap on Ethereum Layer 2<br /><span className='lg:text-[70%] text-[60%] text-[#ccc]'>(ChainLink Oracles integrated)</span></div>
+        <div className='lg:text-[250%] md:text-[200%] text-[160%] mt-[3%] text-[#eee] font-[500]'>Live Now</div>
         <Link href="/dashboard"><button className='lg:mt-[10%] mt-[3%] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton2' style={{border:"2px solid #502"}}>Swap tokens</button></Link>
       </div>
       </div>
@@ -132,14 +120,14 @@ export default function Home(){
         <div className='text-[130%] mt-[3%] text-[#fff] font-[500]'>Engage in decentralised democratic governance</div>
         <Link href="/dashboard"><button className='mt-[3%] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton2' style={{border:"2px solid #502"}}>Enter DAO</button></Link>
         </div>
-        <div className='grid-cols-1 h-[5cm] rounded-xl p-[0.5cm]' style={{backgroundImage:"url(images/ultimumstaking.jpg)",  backgroundPositionY:"5%", backgroundSize:"120%", boxShadow:"2px 2px 10px 1px #502"}}>
-        <div className='text-[120%] text-[#000] font-[600]'>Time-frame (stake)</div>
-        <div className='text-[130%] mt-[3%] text-[#333] font-[500]'>Earn smart money while having full custody of your tokens</div>
+        <div className='grid-cols-1 h-[5cm] rounded-xl p-[0.5cm]' style={{backgroundImage:"url(images/ultimumstake.jpg)",  backgroundPositionY:"5%", backgroundSize:"120%", boxShadow:"2px 2px 10px 1px #502"}}>
+        <div className='text-[120%] text-[#fff] font-[600]'>Time-frame (stake)</div>
+        <div className='text-[130%] mt-[3%] text-[#eee] font-[500]'>Earn smart money while having full flexibility for your tokens</div>
         <Link href="/dashboard"><button className='mt-[3%] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton2' style={{border:"2px solid #502"}}>Stake tokens</button></Link>
         </div>
         <div className='grid-cols-1 h-[5cm] rounded-xl p-[0.5cm]' style={{backgroundImage:"url(images/ultimum-lend-borrow.jpg)", backgroundPositionY:"20%", backgroundSize:"120%", boxShadow:"2px 2px 10px 1px #502"}}>
-        <div className='text-[120%] text-[#fff] font-[600]'>Lending/Borrowing</div>
-        <div className='text-[130%] mt-[3%] text-[#eee] font-[500]'>Implementing the Uniswap V2 interface, gain huge bonuses</div>
+        <div className='text-[120%] text-[#fff] font-[600]'>P2P Lending/Borrowing</div>
+        <div className='text-[130%] mt-[3%] text-[#eee] font-[500]'>Gain huge bonuses for lending to Ultimum</div>
         <Link href="/dashboard"><button className='mt-[3%] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton2' style={{border:"2px solid #502"}}>Lend/borrow</button></Link>
         </div>
         </div>
@@ -168,7 +156,7 @@ export default function Home(){
         <div className="lg:text-[200%] md:text-[180%] text-[150%] font-[600] mt-[10%]">Resource Management</div>
         <div className="lg:text-[120%] md:text-[110%] text-[105%] mt-[5%]">
         We place a high priority on responsibility, transparency, decentralisation and a value-oriented approach because we are stewards of an important protocol and have the capacity to influence 
-        the financial results of many products on Ethereum Layer 2.
+        the financial results of many products on Scroll.
         </div>
         <div className="mt-[5%]"><Link href="https://discord.com"><button className='rounded-md bg-[#000] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton'>Visit forum</button></Link></div>
         </div>
@@ -182,22 +170,34 @@ export default function Home(){
       </div>
 
 
-      <div id="community" className="mt-[2cm]">
+        <div id="insights" className="mt-[2cm]">
+            <div className="text-[180%] lg:text-[300%] md:text-[250%] text-center font-[600] mb-[5%]">Blockchain Insights</div>
+            <BlockchainInsights />
+        </div>
+
+
+        <div id="blog" className="mt-[2cm]">
+            <div className="text-[180%] lg:text-[300%] md:text-[250%] text-center font-[600] mb-[5%]">Recent Ultimum Blog</div>
+            <UltimumHomeBlog />
+        </div>
+
+
+        <div id="community" className="mt-[2cm]">
             <div className="text-[180%] lg:text-[300%] md:text-[250%] text-center font-[600] mb-[5%]">Join the Ultimum Community</div>
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8">
-            <div className="grid-cols-1 px-[8%] pt-[10%] lg:pb-[25%] pb-[20%] rounded-xl socialcols1">
-             <div><span className="px-[0.5cm] py-[0.3cm] bg-[rgba(0,0,0,0.8)] rounded-md">Twitter</span></div>
-             <div className="mt-[0.5cm] text-center"><Link href="https://twitter.com"><img src="images/twitter.png" width="50" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link></div>
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+            <div data-aos="fade-up" className="grid-cols-1 px-[8%] pt-[10%] lg:pb-[25%] pb-[20%] rounded-xl socialcols1">
+             <div><span className="px-[0.5cm] py-[0.3cm] bg-[rgba(0,0,0,0.8)] rounded-md">X (Twitter)</span></div>
+             <div className="mt-[0.5cm] text-center"><Link href="https://x.com"><img src="images/twitter.png" width="50" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link></div>
             </div>
-            <div className="grid-cols-1 px-[8%] pt-[10%] lg:pb-[25%] pb-[20%] rounded-xl socialcols2">
+            <div data-aos="fade-up" className="grid-cols-1 px-[8%] pt-[10%] lg:pb-[25%] pb-[20%] rounded-xl socialcols2">
              <div><span className="px-[0.5cm] py-[0.3cm] bg-[rgba(0,0,0,0.8)] rounded-md">Telegram</span></div>
              <div className="mt-[0.5cm] text-center"><Link href="https://telegram.org"><img src="images/telegram.png" width="50" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link></div>
             </div>
-            <div className="grid-cols-1 px-[8%] pt-[10%] lg:pb-[25%] pb-[20%] rounded-xl socialcols3">
+            <div data-aos="fade-up" className="grid-cols-1 px-[8%] pt-[10%] lg:pb-[25%] pb-[20%] rounded-xl socialcols3">
              <div><span className="px-[0.5cm] py-[0.3cm] bg-[rgba(0,0,0,0.8)] rounded-md">Discord</span></div>
              <div className="mt-[0.5cm] text-center"><Link href="https://discord.com"><img src="images/discord.png" width="50" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link></div>
             </div>
-            <div className="grid-cols-1 px-[8%] pt-[10%] lg:pb-[25%] pb-[20%] rounded-xl socialcols4">
+            <div data-aos="fade-up" className="grid-cols-1 px-[8%] pt-[10%] lg:pb-[25%] pb-[20%] rounded-xl socialcols4">
              <div><span className="px-[0.5cm] py-[0.3cm] bg-[rgba(0,0,0,0.8)] rounded-md">LinkedIn</span></div>
              <div className="mt-[0.5cm] text-center"><Link href="https://linkedin.com"><img src="images/linkedin.png" width="50" className='m-[0.2cm]' style={{display:"inline-block"}} /></Link></div>
             </div>
@@ -205,38 +205,40 @@ export default function Home(){
         </div>
 
 
-        <div id="insights" className="mt-[2cm]">
-            <div className="text-[180%] lg:text-[300%] md:text-[250%] text-center font-[600] mb-[5%]">Blockchain Insights with IQ Social</div>
-            <iframe src="https://iq.social" data-aos="fade-out" className='w-[100%] h-[15cm] rounded-xl' style={{boxShadow:"2px 2px 10px 2px #f07"}}></iframe>
-            {navigateToIQSocial ? (<button className='rounded-xl p-[0.3cm] w-[100%] text-center bg-[#000] mt-[0.5cm] font-[500]' onClick={(e) => setnavigateToIQSocial(false)} style={{boxShadow:"2px 2px 10px 2px #f07"}}>You are now leaving Ultimum. Press to cancel in 5 secs....</button>) : 
-            (<button onClick={(e) => setnavigateToIQSocial(true)} className='rounded-xl p-[0.3cm] w-[100%] text-center bg-[#f07] mt-[0.5cm] font-[500] generalbutton2' style={{boxShadow:"2px 2px 10px 2px #f07"}}>Go to IQ Social</button>)
-             }
-        </div>
-
        <div id="developers" className="mt-[2cm]">
             <div className="text-[180%] lg:text-[300%] md:text-[250%] text-center font-[600] mb-[5%]">Meet our Team of Developers</div>
-       <div className="grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-8 mb-[1%] lg:mx-[10%]" style={{transition:"0.5s ease-in-out"}}>
+       <div className="grid md:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-8 mb-[1%] lg:mx-[25%]" style={{transition:"0.5s ease-in-out"}}>
        <div data-aos="zoom-in" className="grid-cols-1 mb-[5%] rounded-xl text-center teamcols1">
-            <img src="images/patrick.jpg" className='w-[100%] rounded-xl developersimages' />
+            <img src="images/mrpatrick030.jpg" className='w-[100%] rounded-xl developersimages' />
             <div className="text-center mx-[5%] mt-[0.2cm] py-[0.2cm] bg-[rgba(20,20,20,0.8)] rounded-xl teaminfo" style={{transition:"0.5s ease-in-out"}}>
             <div className="text-md">PATRICK OMINISAN</div>
-            <div><i class="fa fa-chevron-circle-down text-[#fff]"></i></div>
-            <div className="font-[600]">Blockchain engineer (Web3Bridge)</div>
+            <div>
+              <i class="fa fa-chevron-circle-down text-[#fff] developerdirect"></i>
+              <span className='developerdetails'>
+              <i class="fa fa-chevron-circle-up text-[#fff]"></i> &nbsp; 
+              <Link href="https://x.com/mrpatrick030"><i class="fa-brands fa-square-x-twitter"></i></Link> &nbsp; 
+              <Link href="https://linkedin.com/in/mrpatrick030"><i class="fa-brands fa-linkedin"></i></Link> &nbsp; 
+              <Link href="https://github.com/mrpatrick030"><i class="fa-brands fa-square-github"></i></Link> &nbsp; 
+              <Link href="https://t.me/mrpatrick030"><i class="fa-brands fa-telegram"></i></Link>
+              </span>
             </div>
-           </div>
-       <div data-aos="zoom-in" className="grid-cols-1 mb-[5%] rounded-xl text-center teamcols1">
-            <img src="images/teni.jpg" className='w-[100%] rounded-xl developersimages' />
-            <div className="text-center mx-[5%] mt-[0.2cm] py-[0.2cm] bg-[rgba(20,20,20,0.8)] rounded-xl teaminfo" style={{transition:"0.5s ease-in-out"}}>
-            <div className="text-md">OLUWATENIAYOMI</div>
-            <div><i class="fa fa-chevron-circle-down text-[#fff]"></i></div>
-            <div className="font-[600]">Backend engineer (BrainDAO)</div>
+            <div className="font-[600]">Blockchain developer (Web3Bridge)</div>
             </div>
            </div>
        <div data-aos="zoom-in" className="grid-cols-1 mb-[5%] rounded-xl text-center teamcols1">
             <img src="images/goodness.jpg" className='w-[100%] rounded-xl developersimages' />
             <div className="text-center mx-[5%] mt-[0.2cm] py-[0.2cm] bg-[rgba(20,20,20,0.8)] rounded-xl teaminfo" style={{transition:"0.5s ease-in-out"}}>
             <div className="text-md">GOODNESS KOLAPO</div>
-            <div><i class="fa fa-chevron-circle-down text-[#fff]"></i></div>
+            <div>
+              <i class="fa fa-chevron-circle-down text-[#fff] developerdirect"></i>
+              <span className='developerdetails'>
+              <i class="fa fa-chevron-circle-up text-[#fff]"></i> &nbsp; 
+              <Link href="https://x.com/goodnesskolapo"><i class="fa-brands fa-square-x-twitter"></i></Link> &nbsp; 
+              <Link href="https://linkedin.com/in/goodness-temilorun"><i class="fa-brands fa-linkedin"></i></Link> &nbsp; 
+              <Link href="https://github.com/goodness5"><i class="fa-brands fa-square-github"></i></Link> &nbsp; 
+              <Link href="https://t.me/goodnesskolapo"><i class="fa-brands fa-telegram"></i></Link>
+              </span>
+            </div>
             <div className="font-[600]">Smart contract developer (Web3Bridge)</div>
             </div>
            </div>

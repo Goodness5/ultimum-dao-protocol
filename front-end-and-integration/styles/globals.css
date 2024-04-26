@@ -37,6 +37,10 @@ body{background-color: #000; color:#fff}
   .ecobutton:hover + .daobutton{filter: blur(3px);}
   .generalbutton2{transition: 0.3s ease-in-out;}
   .generalbutton2:hover{background-color: #000; filter: blur(1px); transform: scale3d(0.95,0.95,0.95);}
+  .generalbutton3{transition: 0.3s ease-in-out;}
+  .generalbutton3:hover{background-color: #00f; transform: scale3d(0.95,0.95,0.95);}
+  .generalbutton4{transition: 0.3s ease-in-out;}
+  .generalbutton4:hover{transform: scale3d(0.95,0.95,0.95);}
 
   @media screen and (min-width:1007px) {
     .firstsectiondiv{background-size:120%; background-repeat: no-repeat;}
@@ -98,6 +102,10 @@ body{background-color: #000; color:#fff}
   .info5{animation: displayAnimation5 60s linear infinite;}
 
  .teamcols1:hover .teaminfo{transform: translate3d(0, -150%, 0); background:rgba(70,0,20,0.8); padding: 0.4cm;margin-bottom: -3cm; margin-right: 1cm; box-shadow: 2px 2px 10px 2px #000;}
+ .developerdetails{display: none;}
+ .teamcols1:hover .developerdetails{display: block;}
+ .teamcols1:hover .developerdirect{display: none;}
+ .developerdetails:hover i {transform: scale3d(1.05, 1.05, 1.05);}
  .teaminfo{box-shadow:2px 2px 10px 1px #502}
  @keyframes developersAnimation{0%{} 100%{box-shadow: 2px 2px 8px 4px #502;}}
  .developersimages{animation: developersAnimation 2s alternate infinite;}
@@ -157,9 +165,61 @@ body{background-color: #000; color:#fff}
 .closedashboardsmallmenu{filter: blur(3px); transition: 0.3s ease-in-out;}
 .closedashboardsmallmenu:hover{filter: none;}
 
+ @keyframes dashboardcomponentAnimation{0%{} 20%{box-shadow: 2px 2px 10px 4px #502;} 40%{box-shadow: 2px 2px 10px 4px #00f;} 60%{box-shadow: 2px 2px 10px 4px #fff;} 80%{box-shadow: 2px 2px 10px 4px #f00;} 100%{box-shadow: 2px 2px 10px 4px #d7b644;}}
+ .dashboardcomponent{animation: dashboardcomponentAnimation 5s alternate;}
 
+ @keyframes joindaocomponentAnimation{0%{} 20%{box-shadow: 2px 2px 5px 4px #502;} 40%{box-shadow: 2px 2px 5px 4px #00f;} 60%{box-shadow: 2px 2px 5px 4px #fff;} 80%{box-shadow: 2px 2px 5px 4px #f00;} 100%{box-shadow: 2px 2px 5px 4px #d7b644;}}
+ .joindao{animation: joindaocomponentAnimation 5s alternate infinite;}
 
- @keyframes pricefeedAnimation{0%{} 100%{box-shadow: 2px 2px 7px 4px #fff;}}
- .pricefeeddivs{animation: pricefeedAnimation 2s alternate infinite;}
+ .cancelbutton{transition: 0.3s ease-in-out;}
+ .cancelbutton:hover{transform: scale3d(1.15,1.15,1.15); box-shadow: 2px 2px 5px 2px #502;}
+
+ .helpinnerdiv{background-image: linear-gradient(345deg, #00f, #001, #100, #502, #010, #2b2202);}
+
+@media screen and (min-width:1007px) {
+  .swapdiv{width:47%; display: inline-block;}
+}
+
+@media screen and (max-width:1007px) {
+  .swapdiv{width:100%}
+}
+
+@media screen and (min-width:1007px) {
+  .switchdiv{width:6%;display: inline-block}
+}
+
+@media screen and (max-width:1007px) {
+  .switchdiv{width:100%;margin-block: 0.3cm;}
+}
+
+@media screen and (min-width:1007px) {
+  .switchimage{margin-top: -2.3cm}
+}
+
+.livepricediv{background-image: linear-gradient(45deg, #000, #001, #100, #111, #001, #000);}
+
  .switchbutton{transition: 0.5s ease-in-out;}
- .switchbutton:hover{transform: rotate3d(0,0,1,180deg); font-size: 90%; background: #eee; color: #502;}
+ .switchbutton:hover{transform: rotate3d(0,0,1,270deg); font-size: 90%}
+
+ .switchbutton2{transition: 0.5s ease-in-out;}
+ .switchbutton2:hover{transform: rotate3d(0,0,1,90deg); font-size: 90%}
+
+ @media screen and (min-width:1007px) {
+  .adminsignup, .adminsignin{background-size: 100%; padding-bottom: 20%; background-repeat:no-repeat; }  
+}
+
+@media screen and (max-width:1007px) {
+  .adminsignup, .adminsignin{background-size: 400%; background-position-x: 47%; background-position-y: 70%; padding-bottom: 80%; background-repeat:no-repeat;} 
+}
+
+@media screen and (min-width:1007px) {
+  .admindashboard{background-size: 100%; background-repeat:no-repeat; }  
+}
+
+@media screen and (max-width:1007px) {
+  .admindashboard{background-position-x: 47%; background-position-y: 50%; padding-bottom: 80%; background-repeat:no-repeat;} 
+}
+
+.tagsdiv{background-image: linear-gradient(45deg, #111, #000, #001, #111, #222, #002);}
+.socialdiv{background-image: linear-gradient(45deg, #111, #000, #001, #111, #222, #002);}
+.trendingdiv{background-image: linear-gradient(45deg, #111, #000, #001, #111, #222, #002);}
