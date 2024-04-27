@@ -90,6 +90,10 @@ contract P2PLending is Ownable {
         _;
     }
 
+    function setadaoaddress(address _dao) public onlyOwner{
+        dao = _dao;
+    }
+    
     function addCollateral(address _collateral) public onlyDao(msg.sender){
            _addCollateral(_collateral);
             emit CollateralAdded(_collateral);
@@ -141,6 +145,8 @@ contract P2PLending is Ownable {
         loan.active = true;
         loan.repaid = false;
 
+        
+
         if (_isERC20) {
             /// Transfer ERC20 tokens from the borrower to this contract
             require(
@@ -177,12 +183,11 @@ contract P2PLending is Ownable {
             msg.sender != loan.borrower,
             "Borrower cannot fund their own loan"
         );
-        require(loan.amount == msg.value, "Incorrect funding amount");
         require(
             block.timestamp <= loan.fundingDeadline,
             "Loan funding deadline has passed"
         );
-        payable(address(this)).transfer(msg.value);
+        payable(address(this)).transfer(loan.amount);
         loan.lender = payable(msg.sender);
         loan.active = false;
         emit LoanFunded(_loanId, msg.sender, msg.value);
@@ -331,4 +336,7 @@ contract P2PLending is Ownable {
     //     emit ServiceChargesWithdrawn(owner(), totalServiceCharges);
     //     totalServiceCharges = 0; // Reset total service charges after withdrawal
     // }
+
+    receive() external payable{}
+    fallback() external payable{}
 }
