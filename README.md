@@ -55,12 +55,12 @@ With a ChainLink Oracle integration, live token data and user-first approach, ou
 Ultimum Protocol is driving the blockchain sector into the self-banking age with actual advancements, and thus lets you earn smart money in a variety of ways. Among them is the time-framing method of staking where you experience full flexibility of your tokens without fear of money being locked up or fear of assets being lost. Time-frame your Ultimum tokens (ULT) over a set period chosen by you to gain instant huge rewards from the ecosystem. Ultimum Protocol will use this new technology to more properly communicate value, allowing you to better control your financial future and capitalize on the value of your money over time. When you stake your tokens, you have the freedom to claim rewards and unstake at anytime, unlike other staking platforms where your assets are locked up without access to them during a time duration predetermined by their systems. The Ultimum staking dApp displays your token balance, amount staked, reward accrued, stake start date, and chosen time duration of stake. Note that unstaking before the chosen time duration incurs a penalty.
 
 ### P2P Lend/Borrow dApp
-Our users are able to participate in P2P lending/borrowing activities of supported tokens. Firstly, a loan has to be created by the borrower, then another user funds the loan by lending to the borrower. The loan has the following characteristics: loan amount, interest, expiry date, and collateral. Collateral provided by the borrower is locked up by the system and sent to the lender if the borrower fails to repay the loan during the specified time. When you lend to Ultimum, you get rewarded hugely according to the agreed terms of the loan (your funds are secured with our security algorithm). When you borrow from Ultimum P2P, ensure to present a collateral and pay back with interest when you repay the amount. Participate in Ultimum DAO governance to determine the next supported collateral. 
+Our users are able to participate in P2P lending/borrowing activities of supported tokens. Firstly, a loan has to be created by the borrower, then another user funds the loan by lending to the borrower. The loan has the following characteristics: loan amount, interest, expiry date, and collateral. Collateral provided by the borrower is locked up by the system and sent to the lender if the borrower fails to repay the loan during the specified time. When you lend to Ultimum, you get rewarded hugely according to the agreed terms of the loan (your funds are secured with our security algorithm). When you borrow from Ultimum P2P, ensure to present a collateral and pay back with interest when you repay the amount. For a better user experience, a "view all available loans" section with pagination has been integrated into the dApp for lenders to navigate between loans and choose from. Participate in Ultimum DAO governance to determine the next supported collateral. 
 
 ### Ultimum Token/Treasury
 The Ultimum token (ULT) is the native token of the Ultimum Protocol and is backed by the Ultimum treasury. The Ultimum treasury ensures effective management of the Ultimum token (ULT) and liquidity and minimize risks. This treasury will also optimize financial operations that support product development. If per adventure, ULT goes below 100% of its initial value during the bear market, the treasury acts as a liquidity provider to manage the token price and ensure its stability across all platforms.
 
-### The UltimumBlog
+### The Ultimum Blog
 We want to kepp our users updated on the latest improvements and progress of the Ultimum Protocol. For that reason, a blog has been integrated on the Ultimum web app (using PostgreSQL and Filebase storage). Click on the "Blog" button on the homepage to access the blog. It features an "all posts" section, single posts section, a sidebar, a search functionality and a pagination functionality to navigate between posts. To control the blog, admin sign up, admin sign in and an admin dashboard have been created to add, update or delete blog posts.
 
 ## Additional Notes
@@ -78,35 +78,35 @@ In future upgrades of this project, a chat system will be implemented for the Ul
 ✅ [Treasury](https://sepolia.scrollscan.com/address/0x3dDdC4936ec019a18A3E2fF384aC9a655Cba4B66) 🟢
 - Address: `0x3dDdC4936ec019a18A3E2fF384aC9a655Cba4B66`
 
-## Ultimum NFT Contract
-
-✅ [UltNft](https://sepolia.scrollscan.com/address/0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf) 🟢
-- Address: `0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf`
-
-## Ultimum Erc20 Contract
-
-✅ [Ultimum](https://sepolia.scrollscan.com/address/0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A) 🟢
-- Address: `0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A`
-
-## StakERC20 Contract
-
-✅ [StakERC20](https://sepolia.scrollscan.com/address/0xC6AffA69811AECd5288fBEa2d80EA31C591086e1) 🟢
-- Address: `0xC6AffA69811AECd5288fBEa2d80EA31C591086e1`
-
-## P2P Lending Contract
-
-⏳ [P2PLending](https://sepolia.scrollscan.com/address/0xDbd7b0441C93E9C058afCF0246CC2a704433085B) ⏳
-- Address: `0xDbd7b0441C93E9C058afCF0246CC2a704433085B`
-
-## Swapper Contract
-
-✅ [Swapper](https://sepolia.scrollscan.com/address/0x87168FbdfB6859ABa9e53ad2Ff233E6604754084) 🟢
-- Address: `0x87168FbdfB6859ABa9e53ad2Ff233E6604754084`
-
 ## DAO Contract
 
 ✅ [DAO](https://sepolia.scrollscan.com/address/0xF20bbD18ce7a01382555fe8Bc9818ccfa1CC34Bf) 🟢
 - Address: `0xF20bbD18ce7a01382555fe8Bc9818ccfa1CC34Bf`
+
+## StakeERC20 (Time-frame) Contract
+
+✅ [StakERC20](https://sepolia.scrollscan.com/address/0xC6AffA69811AECd5288fBEa2d80EA31C591086e1) 🟢
+- Address: `0xC6AffA69811AECd5288fBEa2d80EA31C591086e1`
+
+## P2P Lending/Borrowing Contract
+
+✅ [P2PLending](https://sepolia.scrollscan.com/address/0xDbd7b0441C93E9C058afCF0246CC2a704433085B) 🟢
+- Address: `0xDbd7b0441C93E9C058afCF0246CC2a704433085B`
+
+## Swap Contract
+
+✅ [Swapper](https://sepolia.scrollscan.com/address/0x87168FbdfB6859ABa9e53ad2Ff233E6604754084) 🟢
+- Address: `0x87168FbdfB6859ABa9e53ad2Ff233E6604754084`
+
+## Ultimum Erc20 (ULT) Contract
+
+✅ [Ultimum](https://sepolia.scrollscan.com/address/0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A) 🟢
+- Address: `0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A`
+
+## Ultimum NFT Contract
+
+✅ [UltNft](https://sepolia.scrollscan.com/address/0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf) 🟢
+- Address: `0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf`
 
 # Other Tokens
 
