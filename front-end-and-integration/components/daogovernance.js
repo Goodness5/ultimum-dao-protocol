@@ -228,10 +228,10 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
         }
 
         {displayDAOFeature === "viewProposals" && 
-         (<div data-aos="zoom-out" className="rounded-xl bg-[#000] lg:mx-[20%] p-[0.5cm]" style={{boxShadow:"2px 2px 2px 2px #00f"}}>
-          {numOfProposals > 0 ?
-            (<div className="max-h-[25cm] overflow-auto">
-            {allProposals.map((proposal) => (
+         (<div data-aos="zoom-out" className="rounded-xl bg-[#000] lg:mx-[20%] p-[0.5cm]">
+          {allProposals &&
+            (<div className="max-h-[25cm] overflow-auto pr-[0.5cm]">
+            {allProposals.sort((a, b) => b.id - a.id).map((proposal) => (
           <div key={(proposal.id).toString()} className="p-[0.5cm] bg-[#111] rounded-xl mb-[0.5cm]">
           <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {(proposal.creator).substring(0, 5)}...{(proposal.creator).substring(37, 42)}</div>
           <div className="clear-both mt-[0.2cm] text-[#00f] text-[80%]">
@@ -249,7 +249,7 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
           </div>
         </div> 
             ))}   
-          </div> ) : (<div className="text-center fa-fade text-[#aa0]">All proposals will be displayed here</div>)}  
+          </div>)}  
         </div>)
         }
 

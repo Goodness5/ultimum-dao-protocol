@@ -23,6 +23,8 @@ import { daoContractReadSettings,
     lendBorrowContractAddress,
     usdtContractAddress,
     daiContractAddress,
+    usdtContractReadSettings,
+    daiContractReadSettings,
   } from "@/abiAndContractSettings";
 import ETHChart from "./ethchart";
 
@@ -53,8 +55,19 @@ export default function ProtocolMetricsSection({theWalletAddress, displayCompone
                 const getStakeableTokens = await stakeContractReadSettings.getStakableTokens()
                 const stakeableTokensLength = (getStakeableTokens.length)
                 for (let i=0; i < stakeableTokensLength; i++){
-                    const eachStakeableToken = getStakeableTokens[i].substring(0, 10) + "..." + getStakeableTokens[i].substring(32, 42) + ", ";
-                    stakeableTokensArray.push(eachStakeableToken)
+                    const anyStakeableToken = getStakeableTokens[i]
+                    if (anyStakeableToken == tokenContractAddress) {
+                        const token1 = await tokenContractReadSettings.symbol()
+                        stakeableTokensArray.push(token1 + " ")
+                    }
+                    else if (anyStakeableToken == usdtContractAddress) {
+                        const token2 = await usdtContractReadSettings.symbol()
+                        stakeableTokensArray.push(token2 + " ") 
+                    }
+                    else if (anyStakeableToken == daiContractAddress) {
+                        const token3 = await daiContractReadSettings.symbol()
+                        stakeableTokensArray.push(token3 + " ")
+                    }   
                 }
                 console.log(stakeableTokensArray)
                 setstakeableTokens(stakeableTokensArray)
@@ -92,11 +105,11 @@ export default function ProtocolMetricsSection({theWalletAddress, displayCompone
         <div className="text-[#ccc] text-[90%]">View status of protocol</div>
 
         <div className="text-center mt-[0.7cm] bg-[#000] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
-            <div className="m-[0.4cm]" style={{display:"inline-block"}}>
+            <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>
                 <div className="font-[500] text-[110%]">ULT Total Supply</div>
                 {totalTokenSupply ? (<div className="text-[#aaa] lg:w-[100%] md:w-[100%] w-[7cm] overflow-auto">{Intl.NumberFormat().format(totalTokenSupply)} ULT</div>) : (<span></span>)}
             </div>
-            <div className="m-[0.4cm]" style={{display:"inline-block"}}>
+            <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>
                 <div className="font-[500] text-[110%]">ULT Price</div>
                 {tokenPrice ? (<div className="text-[#aaa]">≈ ${tokenPrice}</div>) : (<span></span>)}
             </div>
@@ -105,7 +118,7 @@ export default function ProtocolMetricsSection({theWalletAddress, displayCompone
                 <div className="text-[#aaa]">Scroll Sepolia</div>
             </div>
             <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>
-                <div className="font-[500] text-[110%]">Stakeable Tokens (By Contract Address)</div>
+                <div className="font-[500] text-[110%]">Stakeable Tokens</div>
                 {stakeableTokens ? (<div className="text-[#aaa]">{stakeableTokens}</div>) : (<span></span>)}
             </div>
             <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>

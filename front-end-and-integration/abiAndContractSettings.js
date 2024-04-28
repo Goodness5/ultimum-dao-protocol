@@ -14,6 +14,7 @@ const daoContractABI = [
       { internalType: "address", name: "_erc20", type: "address" },
       { internalType: "address", name: "_staking", type: "address" },
       { internalType: "address", name: "_swap", type: "address" },
+      { internalType: "address", name: "_p2plending", type: "address" },
     ],
     stateMutability: "nonpayable",
     type: "constructor",
@@ -91,6 +92,16 @@ const daoContractABI = [
     name: "UltNft",
     outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_proposalId", type: "uint256" },
+      { internalType: "address", name: "_collateraladdress", type: "address" },
+    ],
+    name: "addAcceptedCollateral",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -176,6 +187,13 @@ const daoContractABI = [
     name: "mintNft",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "p2plending",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -274,7 +292,7 @@ const daoContractABI = [
     type: "function",
   },
 ];
-const daoContractAddress = "0xb4Fc66308801c17d829bcCe899D8406f2244Ac43";
+const daoContractAddress = "0xF20bbD18ce7a01382555fe8Bc9818ccfa1CC34Bf";
 const daoContractReadSettings = new ethers.Contract(
   daoContractAddress,
   daoContractABI,
@@ -505,7 +523,7 @@ const tokenContractABI = [
     type: "function",
   },
 ];
-const tokenContractAddress = "0xf4a02703f125EDC2bf1518c4398B8766ec3212Ba";
+const tokenContractAddress = "0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A";
 const tokenContractReadSettings = new ethers.Contract(
   tokenContractAddress,
   tokenContractABI,
@@ -710,7 +728,7 @@ const treasuryContractABI = [
     type: "function",
   },
 ];
-const treasuryContractAddress = "0xf302e9293bD9ebe5d773Cc16024E52e1D36BD548";
+const treasuryContractAddress = "0x3dDdC4936ec019a18A3E2fF384aC9a655Cba4B66";
 const treasuryContractReadSettings = new ethers.Contract(
   treasuryContractAddress,
   treasuryContractABI,
@@ -943,7 +961,7 @@ const swapContractABI = [
   },
   { stateMutability: "payable", type: "receive" },
 ];
-const swapContractAddress = "0xE1c9De6E024e1eCC30D893f69cfe064CA481C584";
+const swapContractAddress = "0x87168FbdfB6859ABa9e53ad2Ff233E6604754084";
 const swapContractReadSettings = new ethers.Contract(
   swapContractAddress,
   swapContractABI,
@@ -1277,7 +1295,7 @@ const nftContractABI = [
     type: "function",
   },
 ];
-const nftContractAddress = "0xBD9f5936ab650715567A158eCA31Fb980Fe06182";
+const nftContractAddress = "0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf";
 const nftContractReadSettings = new ethers.Contract(
   nftContractAddress,
   nftContractABI,
@@ -1485,7 +1503,7 @@ const stakeContractABI = [
     type: "function",
   },
 ];
-const stakeContractAddress = "0x60EF1291e055793D7Db04B13c75B714C0Fb4b6AB";
+const stakeContractAddress = "0xC6AffA69811AECd5288fBEa2d80EA31C591086e1";
 const stakeContractReadSettings = new ethers.Contract(
   stakeContractAddress,
   stakeContractABI,
@@ -1498,6 +1516,9 @@ const lendBorrowContractABI = [
     inputs: [
       { internalType: "address", name: "_initialowner", type: "address" },
       { internalType: "address", name: "_treasuryaddr", type: "address" },
+      { internalType: "address", name: "ult", type: "address" },
+      { internalType: "address", name: "usdt", type: "address" },
+      { internalType: "address", name: "dai", type: "address" },
     ],
     stateMutability: "nonpayable",
     type: "constructor",
@@ -1511,6 +1532,19 @@ const lendBorrowContractABI = [
     inputs: [{ internalType: "address", name: "account", type: "address" }],
     name: "OwnableUnauthorizedAccount",
     type: "error",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "address",
+        name: "collateral",
+        type: "address",
+      },
+    ],
+    name: "CollateralAdded",
+    type: "event",
   },
   {
     anonymous: false,
@@ -1681,6 +1715,7 @@ const lendBorrowContractABI = [
     name: "ServiceFeeDeducted",
     type: "event",
   },
+  { stateMutability: "payable", type: "fallback" },
   {
     inputs: [],
     name: "MAX_INTEREST_RATE",
@@ -1717,6 +1752,27 @@ const lendBorrowContractABI = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "accepted_collaterals",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "accepteddCollaterals",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_collateral", type: "address" }],
+    name: "addCollateral",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "uint256", name: "_loanId", type: "uint256" }],
     name: "claimCollateral",
     outputs: [],
@@ -1735,6 +1791,13 @@ const lendBorrowContractABI = [
     name: "createLoan",
     outputs: [],
     stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "dao",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -1851,6 +1914,13 @@ const lendBorrowContractABI = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "address", name: "_dao", type: "address" }],
+    name: "setadaoaddress",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "totalServiceCharges",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
@@ -1878,8 +1948,9 @@ const lendBorrowContractABI = [
     stateMutability: "nonpayable",
     type: "function",
   },
+  { stateMutability: "payable", type: "receive" },
 ];
-const lendBorrowContractAddress = "0x12D77B8ea61863E478Aa6B766f489Af5F7a95aa7";
+const lendBorrowContractAddress = "0xDbd7b0441C93E9C058afCF0246CC2a704433085B";
 const lendBorrowContractReadSettings = new ethers.Contract(
   lendBorrowContractAddress,
   lendBorrowContractABI,

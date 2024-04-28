@@ -21,6 +21,9 @@ import { daoContractReadSettings,
     swapContractAddress,
     lendBorrowContractABI,
     lendBorrowContractAddress,
+    usdtContractAddress,
+    usdtContractReadSettings,
+    daiContractAddress,
   } from "@/abiAndContractSettings";
     export default function MyBalancesSection({displayComponent, setDisplayComponent, changeBg3, changeBg4, changeBg5, theWalletAddress}) {
               //first require ethers to connect
@@ -30,7 +33,7 @@ import { daoContractReadSettings,
                const [ultBalance, setultBalance] = useState()
                const [tokenPrice, setTokenPrice] = useState()
                const [totalStakingReward, settotalStakingReward] = useState()
-               const [stakedTokensWithAmount, setstakedTokensWithAmount] = useState([])
+               const [stakedTokens, setstakedTokens] = useState([])
                const [userLastActiveTime, setuserLastActiveTime] = useState()
                const [userETHBalance, setuserETHBalance] = useState()
    
@@ -49,14 +52,23 @@ import { daoContractReadSettings,
                     console.log(getTotalStakingReward.toString())
                     settotalStakingReward(getTotalStakingReward.toString())
                     const collectStakeData = []
-                    const getStakedTokensAndAmount = await stakeContractReadSettings.userInfo(theWalletAddress)
-                    const getStakedTokensAndAmountArrayLength = getStakedTokensAndAmount.length
-                    for (let i=0; i < getStakedTokensAndAmountArrayLength; i++){
-                        const showStakedTokensAndAmount = getStakedTokensAndAmount.assets[i] + " "
-                        if (getStakedTokensAndAmount.assets[i] != undefined){collectStakeData.push(showStakedTokensAndAmount)}
-                    }
+                    const getStakedTokens = await stakeContractReadSettings.userInfo(theWalletAddress)
+                    console.log("staked tokens: " + getStakedTokens)
+                    const getStakedTokensArrayLength = getStakedTokens.length
+                    for (let i=0; i < getStakedTokensArrayLength; i++){
+                        const anyStakedToken = getStakedTokens.assets[i]
+                        if (anyStakedToken != undefined & anyStakedToken == tokenContractAddress){
+                            const token1 = await tokenContractReadSettings.symbol()
+                            collectStakeData.push(token1 + " ")}
+                        else if (anyStakedToken != undefined & anyStakedToken == usdtContractAddress){
+                            const token2 = await usdtContractReadSettings.symbol()
+                            collectStakeData.push(token2 + " ")}   
+                        else if (anyStakedToken != undefined & anyStakedToken == daiContractAddress){
+                            const token3 = await daoContractReadSettings.symbol()
+                            collectStakeData.push(token3 + " ")} 
+                         }
                     console.log(collectStakeData)
-                    setstakedTokensWithAmount(collectStakeData)
+                    setstakedTokens(collectStakeData)
                     const memberDetails = await daoContractReadSettings.members(theWalletAddress)
                     const lastActiveTimeEpoch = memberDetails.lastactivetime.toString()
                     const lastActiveTime = new Date(memberDetails.lastactivetime * 1000).toUTCString()
@@ -66,28 +78,28 @@ import { daoContractReadSettings,
                   }
                 }
                 getUserData();  
-               }, [theWalletAddress, displayComponent, ultBalance, tokenPrice, totalStakingReward, stakedTokensWithAmount, userLastActiveTime, userETHBalance])
+               }, [theWalletAddress, displayComponent, ultBalance, tokenPrice, totalStakingReward, stakedTokens, userLastActiveTime, userETHBalance])
     
     return (
         <div>
         <div className="font-[500] bg-[#502] px-[0.4cm] py-[0.15cm] rounded-md mb-[0.2cm]" style={{display:"inline-block", boxShadow:"2px 2px 2px 2px #333"}}>My Balances</div>
         <div className="text-[#ccc] text-[90%]">Manage all your assets on Ultimum Protocol</div>
         <div className="text-center mt-[0.4cm]">
-            <div className="m-[0.4cm]" style={{display:"inline-block"}}>
+            <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>
                 <div className="font-[500] text-[110%]">ULT Balance</div>
                 {ultBalance ? (<div className="text-[#aaa]">{Intl.NumberFormat().format(ultBalance)} ULT</div>) : (<span></span>)}
             </div>
-            <div className="m-[0.4cm]" style={{display:"inline-block"}}>
+            <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>
                 <div className="font-[500] text-[110%]">ULT Price</div>
                 {tokenPrice ? (<div className="text-[#aaa]">≈ ${tokenPrice}</div>) : (<span></span>)}
             </div>
-            <div className="m-[0.4cm]" style={{display:"inline-block"}}>
+            <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>
                 <div className="font-[500] text-[110%]">ETH Balance</div>
                 {userETHBalance ? (<div className="text-[#aaa]">{userETHBalance} ETH</div>) : (<span></span>)}
             </div>
             <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>
-                <div className="font-[500] text-[110%]">Staked Tokens Contracts</div>
-                {stakedTokensWithAmount ? (<div className="text-[#aaa] lg:w-[100%] md:w-[100%] w-[7cm] overflow-auto">{stakedTokensWithAmount}</div>) : (<span></span>)}
+                <div className="font-[500] text-[110%]">Staked Tokens</div>
+                {stakedTokens ? (<div className="text-[#aaa] lg:w-[100%] md:w-[100%] w-[7cm] overflow-auto">{stakedTokens}</div>) : (<span></span>)}
             </div>
             <div className="text-center m-[0.4cm]" style={{display:"inline-block"}}>
                 <div className="font-[500] text-[110%]">Total Staking Reward</div>

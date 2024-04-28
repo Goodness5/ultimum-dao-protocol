@@ -46,6 +46,7 @@ export default function UltimumDAOSection({theWalletAddress, displayComponent}) 
        const [userULTBalance, setUserULTBalance] = useState()
        const [userNFTBalance, setUserNFTBalance] = useState()
        const [stakedTokenCapital, setStakedTokenCapital] = useState()
+       const [showDAO, setShowDAO] = useState(true)
 
        useEffect(()=>{
         const getTheData = async() => {
@@ -61,6 +62,9 @@ export default function UltimumDAOSection({theWalletAddress, displayComponent}) 
             const NFTbalance = await nftContractReadSettings.balanceOf(theWalletAddress)
             console.log(NFTbalance)
             setUserNFTBalance(NFTbalance.toString())
+            if (userNFTBalance < 1){
+              setShowDAO(false)
+            }
             const getStakedTokenDetails = await stakeContractReadSettings.stakeassets(theWalletAddress, tokenContractAddress)
             const tokencapital = (getStakedTokenDetails.capital.toString()) *10 **-18
             setStakedTokenCapital(tokencapital)
@@ -188,7 +192,8 @@ export default function UltimumDAOSection({theWalletAddress, displayComponent}) 
         (<div className="text-right font-[500] mt-[0.5cm]"><span className="cursor-pointer" onClick={(e) => setHelp(true)}>Help <img src="images/add.png" className="ml-[0.2cm]" width="17" style={{display:"inline-block"}} /></span></div>)
         }
 
-         {userNFTBalance >= 1 ?
+          <div>
+         {showDAO ?
           (<div className="mt-[0.7cm] bg-[#000] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
             <DAOgovernance daoContractReadSettings={daoContractReadSettings} daoContractAddress={daoContractAddress} daoContractABI={daoContractABI} theWalletAddress={theWalletAddress}/>
           </div>) 
@@ -196,6 +201,7 @@ export default function UltimumDAOSection({theWalletAddress, displayComponent}) 
         (<div className="mt-[0.7cm] bg-[#000] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
            <DaoStakingAndNFT theWalletAddress={theWalletAddress} ETHamount={ETHamount} setETHamount={setETHamount} buyULT={buyULT} showApproveStakeButton={showApproveStakeButton} showStakeButton={showStakeButton} approveStakingContractFromTokenContract={approveStakingContractFromTokenContract} stakeULTtokensToMint={stakeULTtokensToMint} mintNFT={mintNFT} userULTBalance={userULTBalance} userNFTBalance={userNFTBalance} userETHBalance={userETHBalance} stakedTokenCapital={stakedTokenCapital} />
         </div>)}
+        </div>
 
     {loading ? 
      (<div className='bg-[rgba(0,0,0,0.8)] text-[#000] text-center w-[100%] h-[100%] top-0 right-0' style={{position:"fixed", zIndex:"9999"}}>

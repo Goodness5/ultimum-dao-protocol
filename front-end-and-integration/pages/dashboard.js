@@ -194,7 +194,7 @@ export default function Dashboard(){
       <StakeSection theWalletAddress={theWalletAddress} />
     </div>)} 
     {displayComponent === "lend" && (<div id="lend" data-aos="zoom-in" className='dashboardcomponent bg-[#111] lg:mx-[2cm] md:mx-[1cm] p-[0.5cm] rounded-xl mb-[1cm]' style={{boxShadow:"2px 2px 2px 2px #502", zIndex:"9999"}}>
-      <LendSection />
+      <LendSection theWalletAddress={theWalletAddress} />
     </div>)} 
     {displayComponent === "borrow" && (<div id="borrow" data-aos="zoom-in" className='dashboardcomponent bg-[#111] lg:mx-[2cm] md:mx-[1cm] p-[0.5cm] rounded-xl mb-[1cm]' style={{boxShadow:"2px 2px 2px 2px #502", zIndex:"9999"}}>
       <BorrowSection theWalletAddress={theWalletAddress} />
