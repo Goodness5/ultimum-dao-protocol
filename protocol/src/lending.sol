@@ -118,7 +118,8 @@ contract P2PLending is Ownable {
         uint _duration,
         uint _collateralamount,
         address _collateral,
-        bool _isERC20
+        bool _isERC20,
+        uint _fundingDeadline
     ) external payable isCollateral(_collateral) {
         require(
             _amount >= MIN_LOAN_AMOUNT && _amount <= MAX_LOAN_AMOUNT,
@@ -130,7 +131,6 @@ contract P2PLending is Ownable {
         );
         require(_duration > 0, "Loan duration must be greater than 0");
         uint _repaymentAmount = _amount + (_amount * _interest) / 100;
-        uint _fundingDeadline = block.timestamp + (1 days);
         uint loanId = loanCount++;
         Loan storage loan = loans[loanId];
         loan.amount = _amount;
