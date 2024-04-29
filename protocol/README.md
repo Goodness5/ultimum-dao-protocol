@@ -1,33 +1,14 @@
 # Contract Addresses
 
-
-## Contracts
- 
-
-✅ [DAO](https://sepolia.scrollscan.com/address/0xF20bbD18ce7a01382555fe8Bc9818ccfa1CC34Bf) 🟢
-- Address: `0xF20bbD18ce7a01382555fe8Bc9818ccfa1CC34Bf`
-
-
-✅ [Treasury](https://sepolia.scrollscan.com/address/0x3dDdC4936ec019a18A3E2fF384aC9a655Cba4B66) 🟢
-- Address: `0x3dDdC4936ec019a18A3E2fF384aC9a655Cba4B66`
-
-
-✅ [StakERC20](https://sepolia.scrollscan.com/address/0xC6AffA69811AECd5288fBEa2d80EA31C591086e1) 🟢
-- Address: `0xC6AffA69811AECd5288fBEa2d80EA31C591086e1`
-
-
-✅ [Swapper](https://sepolia.scrollscan.com/address/0x87168FbdfB6859ABa9e53ad2Ff233E6604754084) 🟢
-- Address: `0x87168FbdfB6859ABa9e53ad2Ff233E6604754084`
-
-✅ [UltNft](https://sepolia.scrollscan.com/address/0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf) 🟢
-- Address: `0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf`
-
-✅ [Ultimum](https://sepolia.scrollscan.com/address/0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A) 🟢
-- Address: `0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A`
-
-
-⏳ [P2PLending](https://sepolia.scrollscan.com/address/0xDbd7b0441C93E9C058afCF0246CC2a704433085B) ⏳
-- Address: `0xDbd7b0441C93E9C058afCF0246CC2a704433085B`
+| Contract Name | Address                                    | Verification Status |
+|---------------|--------------------------------------------|---------------------|
+| UltNft        | [0x266ED231Fa45FF9A382F5BF775Ee07BEF6DE0320](https://sepolia.scrollscan.com/address/0x266ed231fa45ff9a382f5bf775ee07bef6de0320) | Verified            |
+| Ultimum       | [0x4F4E34C18333A6F8468e2f3c7B97D2A5586803b1](https://sepolia.scrollscan.com/address/0x4f4e34c18333a6f8468e2f3c7b97d2a5586803b1) | Verified            |
+| Treasury      | [0x75bA3942EF40A58d4b625417Cb126c6c7329E3Ea](https://sepolia.scrollscan.com/address/0x75ba3942ef40a58d4b625417cb126c6c7329e3ea) | Verified            |
+| StakERC20     | [0x6777BF9D829DB0d2957CFB9354d8B587Ae4CfD7d](https://sepolia.scrollscan.com/address/0x6777bf9d829db0d2957cfb9354d8b587ae4cfd7d) | Verified            |
+| P2PLending    | [0xF618695d0A673aAcCB288bc37E4f21A031b63303](https://sepolia.scrollscan.com/address/0xf618695d0a673aaccb288bc37e4f21a031b63303) | Verified            |
+| Swapper       | [0xe28a90f0A5F2E84aF69B36157D9107195A58eaf6](https://sepolia.scrollscan.com/address/0xe28a90f0a5f2e84af69b36157d9107195a58eaf6) | Verified            |
+| DAO           | [0x56Ff940f19BF3f02920b6D16F252856fB1fBe96C](https://sepolia.scrollscan.com/address/0x56ff940f19bf3f02920b6d16f252856fb1fbe96c) | Verified            |
 
 
 
