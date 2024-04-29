@@ -75,38 +75,38 @@ In future upgrades of this project, a chat system will be implemented for the Ul
 
 ## Treasury Contract
 
-✅ [Treasury](https://sepolia.scrollscan.com/address/0x3dDdC4936ec019a18A3E2fF384aC9a655Cba4B66) 🟢
-- Address: `0x3dDdC4936ec019a18A3E2fF384aC9a655Cba4B66`
+✅ [Treasury](https://sepolia.scrollscan.com/address/0x3186971052B2aA1D0B4498AE96966C6F12088d32) 🟢
+- Address: `0x3186971052B2aA1D0B4498AE96966C6F12088d32`
 
 ## DAO Contract
 
-✅ [DAO](https://sepolia.scrollscan.com/address/0xF20bbD18ce7a01382555fe8Bc9818ccfa1CC34Bf) 🟢
-- Address: `0xF20bbD18ce7a01382555fe8Bc9818ccfa1CC34Bf`
+✅ [DAO](https://sepolia.scrollscan.com/address/0xA4D44C119e9f51b1f2f247C75D77D2C7719c882a) 🟢
+- Address: `0xA4D44C119e9f51b1f2f247C75D77D2C7719c882a`
 
 ## StakeERC20 (Time-frame) Contract
 
-✅ [StakERC20](https://sepolia.scrollscan.com/address/0xC6AffA69811AECd5288fBEa2d80EA31C591086e1) 🟢
-- Address: `0xC6AffA69811AECd5288fBEa2d80EA31C591086e1`
+✅ [StakERC20](https://sepolia.scrollscan.com/address/0x48BB61cA674E0e69E5605895f62393636cd51bB9) 🟢
+- Address: `0x48BB61cA674E0e69E5605895f62393636cd51bB9`
 
 ## P2P Lending/Borrowing Contract
 
-✅ [P2PLending](https://sepolia.scrollscan.com/address/0xDbd7b0441C93E9C058afCF0246CC2a704433085B) 🟢
-- Address: `0xDbd7b0441C93E9C058afCF0246CC2a704433085B`
+✅ [P2PLending](https://sepolia.scrollscan.com/address/0x6c3a658765748059ac5099C98a23374a8339608A) 🟢
+- Address: `0x6c3a658765748059ac5099C98a23374a8339608A`
 
 ## Swap Contract
 
-✅ [Swapper](https://sepolia.scrollscan.com/address/0x87168FbdfB6859ABa9e53ad2Ff233E6604754084) 🟢
-- Address: `0x87168FbdfB6859ABa9e53ad2Ff233E6604754084`
+✅ [Swapper](https://sepolia.scrollscan.com/address/0x8b5474E72096225AbED4C32eD21cc641372e3218) 🟢
+- Address: `0x8b5474E72096225AbED4C32eD21cc641372e3218`
 
 ## Ultimum Erc20 (ULT) Contract
 
-✅ [Ultimum](https://sepolia.scrollscan.com/address/0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A) 🟢
-- Address: `0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A`
+✅ [Ultimum](https://sepolia.scrollscan.com/address/0x3ecB57f648D39aB64E6A87ec355a8FD0c116aEb3) 🟢
+- Address: `0x3ecB57f648D39aB64E6A87ec355a8FD0c116aEb3`
 
 ## Ultimum NFT Contract
 
-✅ [UltNft](https://sepolia.scrollscan.com/address/0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf) 🟢
-- Address: `0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf`
+✅ [UltNft](https://sepolia.scrollscan.com/address/0xE4Ec85e33aAc5B0C48203A9371b864FA43d7D915) 🟢
+- Address: `0xE4Ec85e33aAc5B0C48203A9371b864FA43d7D915`
 
 # Other Tokens
 
