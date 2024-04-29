@@ -118,7 +118,7 @@ export default function Dashboard(){
   return (
     <>
     <Head>
-   <title>Ultimum Protocol Dashboard - Acess to Ultimum's Ecosystem (DAO, Swap, Staking, Token, Treasury,  Lending/Borrowing, NFT)</title>
+   <title>Ultimum Protocol Dashboard - Acess to Ultimum's Ecosystem (DAO, Swap, Staking, Token, Treasury, Lending/Borrowing, NFT)</title>
    <link rel="shortcut icon" href="/favicon.ico" />
    </Head>
    <div>
