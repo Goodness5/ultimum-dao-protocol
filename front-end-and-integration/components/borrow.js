@@ -130,9 +130,11 @@ export default function BorrowSection({theWalletAddress}) {
           const currentTimestamp = block.timestamp;
           console.log("Current block timestamp:", currentTimestamp);
           const totalDuration = duration * 3600;
+          const fundingDeadline = duration * 3600
           console.log(totalDuration)
-          const createloan = await lendBorrowContractWriteSettings.connect(signer).createLoan(ethers.utils.parseUnits(ETHAmountToBorrow, 18), interestRate, totalDuration, ethers.utils.parseUnits(collateralAmount, 18), collateralAddress, isERC20)
-      } catch (error) {
+          const createloan = await lendBorrowContractWriteSettings.connect(signer).createLoan(ethers.utils.parseUnits(ETHAmountToBorrow, 18), interestRate, totalDuration, ethers.utils.parseUnits(collateralAmount, 18), collateralAddress, isERC20, fundingDeadline)
+          setHideApprove(false)
+        } catch (error) {
         console.log(error)
         setLoading(false)
        }
@@ -181,7 +183,7 @@ export default function BorrowSection({theWalletAddress}) {
          const signer = provider.getSigner(walletAddress);
          const lendBorrowContractWriteSettings = new ethers.Contract(lendBorrowContractAddress, lendBorrowContractABI, signer)
          try {
-            const repayloan = await lendBorrowContractWriteSettings.connect(signer).repayLoan({value:ethers.utils.parseUnits(ETHrepayAmount, 18)}, loanID)
+            const repayloan = await lendBorrowContractWriteSettings.connect(signer).repayLoan(loanID, {value:ethers.utils.parseUnits(ETHrepayAmount, 18)})
         } catch (error) {
           console.log(error)
           setLoading(false)
@@ -275,7 +277,7 @@ export default function BorrowSection({theWalletAddress}) {
         <form>
          <div className='p-[0.5cm] pb-[1cm] bg-[#eee] rounded-md'>
          <div className='text-[#222] font-[500] clear-both'>
-          <span className="float-left text-[#000]">Borrowed ETH amount</span>
+          <span className="float-left text-[#000]">ETH amount</span>
           <span className='float-right'>Loan ID</span>
          </div>
          <div className='mt-[1.5cm] clear-both font-[500]'>

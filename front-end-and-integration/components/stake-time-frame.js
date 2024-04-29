@@ -135,6 +135,7 @@ export default function StakeSection({theWalletAddress}) {
                try {
                 if (tokenAcapital == "0"){const staketokens = await stakeContractWriteSettings.connect(signer).stake(tokenA, ethers.utils.parseUnits(tokenAamount, 18), duration)}
                 else {const increasestake = await stakeContractWriteSettings.connect(signer).increaseStake(tokenA, ethers.utils.parseUnits(tokenAamount, 18))}
+                setshowApproveStakeButton(true)
               } catch (error) {
                 console.log(error)
                 setLoading(false)
@@ -227,7 +228,7 @@ export default function StakeSection({theWalletAddress}) {
          </div>
         </form>
         </div>
-          <div className="mt-[0.5cm]"><img src="images/swapimage.png" onClick={(e) => setStakeOption(false)} className="m-[auto] cursor-pointer switchbutton" width="40" /></div>
+          <div className="mt-[0.5cm]"><img src="images/swapimage.png" onClick={(e) => setStakeOption(false)} className="m-[auto] cursor-pointer switchbutton" width="35" /></div>
           <div className=" bg-[#002] p-[0.5cm] rounded-xl mt-[0.5cm]" style={{boxShadow:"2px 2px 2px 2px #502"}}>
          <div className='p-[0.5cm] bg-[#000] text-[#fff] font-[500] rounded-md'>
           <div className="mb-[0.2cm]">Staked amount: {tokenAcapital ? (<span>{Intl.NumberFormat().format(tokenAcapital)}</span>) : (<span>Nil</span>)}</div>
@@ -257,7 +258,7 @@ export default function StakeSection({theWalletAddress}) {
          </div>
          </div>
         </div>
-          <div className="mt-[0.5cm]"><img src="images/swapimage.png" onClick={(e) => setStakeOption(true)} className="m-[auto] cursor-pointer switchbutton2" width="40" /></div>
+          <div className="mt-[0.5cm]"><img src="images/swapimage.png" onClick={(e) => setStakeOption(true)} className="m-[auto] cursor-pointer switchbutton2" width="35" /></div>
         <div className="mt-[0.5cm] bg-[#111] p-[0.5cm] rounded-xl " style={{boxShadow:"2px 2px 2px 2px #333"}}>
           <div className='p-[0.5cm] pb-[1cm] bg-[#eee] rounded-md'>
          <div className='text-[#222] clear-both font-[500]'>
@@ -279,7 +280,7 @@ export default function StakeSection({theWalletAddress}) {
           }
 
     {loading ? 
-     (<div className='bg-[rgba(0,0,0,0.8)] text-[#000] text-center w-[100%] h-[100%] top-0 right-0' style={{position:"fixed", zIndex:"9999"}}>
+     (<div className='bg-[rgba(0,0,0,0.8)] text-[#000] text-center w-[100%] h-[100%] top-0 right-0 rounded-xl' style={{position:"fixed", zIndex:"9999"}}>
       <div className='loader mx-[auto] lg:mt-[20%] md:mt-[40%] mt-[50%]'></div>
       </div>) : (<span></span>)  
      }

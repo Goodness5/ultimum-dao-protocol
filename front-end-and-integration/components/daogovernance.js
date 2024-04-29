@@ -66,6 +66,7 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
              else if (getMembershipStatus == false){
              setmembershipStatusColor("#ff0")
              setMembership("non-member")
+             showAndSetJoinDAO()
              }
             } catch (error) {
               console.log(error)
@@ -164,13 +165,14 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
                 const viewproposals = await daoContractReadSettings.proposals(i);
                 proposals.push(viewproposals);
             }
+            proposals.sort((a, b) => b.id - a.id);
             setAllProposals(proposals);
             } catch (error) {
                 console.log(error)
             }
           }
           viewAllProposals();
-     }, [allProposals, numOfProposals, loading])
+     }, [allProposals, loading])
 
             // function to close proposals
             const closeProposal = async (defaultValueID) => {
@@ -194,6 +196,43 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
                  setLoading(false)
               }
             }
+
+      //search proposals functionality
+    const [searchQuery, setSearchQuery] = useState()
+    const [searchData, setSearchData] = useState([])
+    const handleSearch = async () => {
+      setLoading(true)
+       try {
+        const searchDataArray = []
+        const getAllProposalsNumber = await daoContractReadSettings.proposalCount()
+        for (let i=0; i < getAllProposalsNumber; i++){
+          const anyProposalData = await daoContractReadSettings.proposals(i);
+          const statement = anyProposalData.description.toLowerCase().split(' ')
+          if (anyProposalData.id.toString() == searchQuery || statement.includes(searchQuery.toLowerCase())){
+            searchDataArray.push(anyProposalData)  
+          }
+          searchDataArray.sort((a, b) => b.id - a.id)
+          setSearchData(searchDataArray)      
+        }
+       } catch (error) {
+        console.log(error)
+        setLoading(false)
+       }
+       finally {
+        setLoading(false)
+       }
+    }
+
+             // pagination
+            const [currentPage, setCurrentPage] = useState(1);
+            const proposalsPerPage = 5;
+            const indexOfLastProposal = currentPage * proposalsPerPage;
+            const indexOfFirstProposal = indexOfLastProposal - proposalsPerPage;
+            const currentProposals = allProposals.slice(indexOfFirstProposal, indexOfLastProposal);
+            const searchedProposals = searchData.slice(indexOfFirstProposal, indexOfLastProposal);
+            const paginate = (pageNumber) => {
+            setCurrentPage(pageNumber);
+            };
 
     return (
        <div>
@@ -222,16 +261,25 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
              {theWalletAddress ? (<input type="text" className="w-[100%] bg-[rgba(0,0,0,0)] mt-[0.8cm] pb-[0.2cm] px-[0.2cm] outline-none rounded-b-xl text-[#eee] placeholder-[#eee]" value={theWalletAddress} style={{borderBottom:"2px solid #333"}} />) :
              (<input type="text" className="w-[100%] bg-[rgba(0,0,0,0)] mt-[0.8cm] py-[0.2cm] px-[0.2cm] outline-none rounded-b-xl text-[#eee] placeholder-[#eee]" value="Connect wallet to see wallet address" style={{borderBottom:"2px solid #333"}} />)}
             </div>
-            <button type="submit" onClick={(e) => {e.preventDefault(); joinTheDAO(username)}} className="w-[100%] font-[500] bg-[#502] px-[0.4cm] py-[0.15cm] rounded-md generalbutton" style={{boxShadow:"2px 2px 2px 2px #333"}}>Click to Join DAO</button>
+            <button type="submit" onClick={(e) => {e.preventDefault(); joinTheDAO(username)}} className="w-[100%] font-[500] bg-[#502] px-[0.4cm] py-[0.15cm] rounded-md generalbutton" style={{boxShadow:"2px 2px 2px 2px #777"}}>Click to Join DAO</button>
             </form>
         </div>)
         }
 
         {displayDAOFeature === "viewProposals" && 
          (<div data-aos="zoom-out" className="rounded-xl bg-[#000] lg:mx-[20%] p-[0.5cm]">
-          {allProposals &&
-            (<div className="max-h-[25cm] overflow-auto pr-[0.5cm]">
-            {allProposals.sort((a, b) => b.id - a.id).map((proposal) => (
+          {allProposals.length > 0 && 
+          (<div className='text-center mb-[0.7cm] mt-[-0.3cm]'>
+        <span className='bg-[#000] text-[#fff] px-[0.5cm] py-[0.2cm] rounded-full' style={{border:"2px solid #502"}}>
+        <form onSubmit={(e) => {e.preventDefault(); handleSearch(searchQuery)}} style={{display:"inline-block"}}>
+        <input type="text" placeholder="Search by ID or description..." onChange={(e) => setSearchQuery(e.target.value)} className='bg-[#000] w-[5cm] placeholder-[#fff] text-[#fff] text-[90%] outline-none' /><img src="images/search.png" width="20" className='ml-[0.2cm] cursor-pointer' onClick={(e) => {e.preventDefault(); handleSearch(searchQuery)}} style={{display:"inline-block"}}/>
+        </form>
+        </span>
+         </div>)}
+
+          {searchData.length > 0 ?
+            (<div className="overflow-auto">
+            {searchedProposals.map((proposal) => (
           <div key={(proposal.id).toString()} className="p-[0.5cm] bg-[#111] rounded-xl mb-[0.5cm]">
           <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {(proposal.creator).substring(0, 5)}...{(proposal.creator).substring(37, 42)}</div>
           <div className="clear-both mt-[0.2cm] text-[#00f] text-[80%]">
@@ -248,8 +296,44 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
               </div>
           </div>
         </div> 
-            ))}   
-          </div>)}  
+            ))}  
+            <div className='my-[0.5cm]'>
+          {Array.from({ length: Math.ceil(searchData.length / proposalsPerPage) }, (_, index) => (
+            <button className='generalbutton bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] mx-[0.2cm] text-[#fff]' key={index} onClick={() => paginate(index + 1)}>
+              {index + 1}
+            </button>
+          ))}
+          </div>         
+          </div>
+        ) : 
+        (<div className="overflow-auto">
+        {currentProposals.map((proposal) => (
+      <div key={(proposal.id).toString()} className="p-[0.5cm] bg-[#111] rounded-xl mb-[0.5cm]">
+      <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {(proposal.creator).substring(0, 5)}...{(proposal.creator).substring(37, 42)}</div>
+      <div className="clear-both mt-[0.2cm] text-[#00f] text-[80%]">
+        <span>{(new Date((proposal.time_created) * 1000)).toUTCString()}</span> 
+        {proposal.status == true && (<span className="text-[#0f0] ml-[0.2cm]">Ongoing</span>)}
+        {proposal.status == false && (<span className="text-[#900] ml-[0.2cm]">Closed</span>)}
+      </div>
+      <div>
+          <div className="proposal mt-[0.3cm]">{proposal.description}</div>
+          <div className="mt-[0.5cm]">
+              <div style={{display:"inline-block"}}><img src="images/up-arrow.png" width="20" style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.forVotes).toString())}</span></div>
+              <div className="ml-[1cm]" style={{display:"inline-block"}}><img src="images/down-arrow.png" width="20" style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.againstVotes).toString())}</span></div>
+              {((proposal.creator).toLowerCase() === theWalletAddress &  proposal.status == true) ? (<div className="mt-[0.5cm] text-right"><span className="cursor-pointer" onClick={(e) => {e.preventDefault(); closeProposal((proposal.id).toString())}}><span className="text-[80%]">Close Proposal</span> <img src="images/crossed.png" width="20" style={{display:"inline-block"}}/></span></div>) : (<span></span>)}
+          </div>
+      </div>
+    </div> 
+        ))}  
+        <div className='mt-[0.5cm]'>
+      {Array.from({ length: Math.ceil(allProposals.length / proposalsPerPage) }, (_, index) => (
+        <button className='generalbutton bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] mx-[0.2cm] text-[#fff]' key={index} onClick={() => paginate(index + 1)}>
+          {index + 1}
+        </button>
+      ))}
+      </div>         
+      </div>)
+        }  
         </div>)
         }
 
@@ -265,7 +349,7 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
          {theWalletAddress ? (<input type="text" className="w-[100%] bg-[rgba(0,0,0,0)] mt-[0.8cm] pb-[0.2cm] px-[0.2cm] outline-none rounded-b-xl text-[#eee] placeholder-[#eee]" value={theWalletAddress} style={{borderBottom:"2px solid #333"}} />) :
          (<input type="text" className="w-[100%] bg-[rgba(0,0,0,0)] mt-[0.8cm] py-[0.2cm] px-[0.2cm] outline-none rounded-b-xl text-[#eee] placeholder-[#eee]" value="Connect wallet to see your wallet address" style={{borderBottom:"2px solid #333"}} />)}
         </div>
-        <button type="submit" onClick={(e) => {e.preventDefault(); createAProposal(proposalDescription)}} className="w-[100%] font-[500] bg-[#502] px-[0.4cm] py-[0.15cm] rounded-md generalbutton" style={{boxShadow:"2px 2px 2px 2px #333"}}>Click to Create a Proposal</button>
+        <button type="submit" onClick={(e) => {e.preventDefault(); createAProposal(proposalDescription)}} className="w-[100%] font-[500] bg-[#502] px-[0.4cm] py-[0.15cm] rounded-md generalbutton" style={{boxShadow:"2px 2px 2px 2px #777"}}>Click to Create a Proposal</button>
         </form>
         </div>)
         }
@@ -289,14 +373,14 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
       {theWalletAddress ? (<input type="text" className="w-[100%] bg-[rgba(0,0,0,0)] mt-[0.8cm] py-[0.2cm] px-[0.2cm] outline-none rounded-b-xl text-[#eee] placeholder-[#eee]" value={theWalletAddress} style={{borderBottom:"2px solid #333"}} />) :
       (<input type="text" className="w-[100%] bg-[rgba(0,0,0,0)] mt-[0.8cm] py-[0.2cm] px-[0.2cm] outline-none rounded-b-xl text-[#eee] placeholder-[#eee]" value="Connect wallet to see your wallet address" style={{borderBottom:"2px solid #333"}} />)}
      </div>
-     <button type="submit" onClick={(e) => {e.preventDefault(); voteForProposal(proposalID, vote)}} className="w-[100%] font-[500] bg-[#502] px-[0.4cm] py-[0.15cm] rounded-md generalbutton" style={{boxShadow:"2px 2px 2px 2px #333"}}>Click to Vote for a Proposal</button>
+     <button type="submit" onClick={(e) => {e.preventDefault(); voteForProposal(proposalID, vote)}} className="w-[100%] font-[500] bg-[#502] px-[0.4cm] py-[0.15cm] rounded-md generalbutton" style={{boxShadow:"2px 2px 2px 2px #777"}}>Click to Vote for a Proposal</button>
      </form>
      </div>)
         }
         </div> 
 
     {loading ? 
-     (<div className='bg-[rgba(0,0,0,0.8)] text-[#000] text-center w-[100%] h-[100%] top-0 right-0' style={{position:"fixed", zIndex:"9999"}}>
+     (<div className='bg-[rgba(0,0,0,0.8)] text-[#000] text-center w-[100%] h-[100%] top-0 right-0 rounded-xl' style={{position:"fixed", zIndex:"9999"}}>
       <div className='loader mx-[auto] lg:mt-[20%] md:mt-[40%] mt-[70%]'></div>
       </div>) : (<span></span>)  
     }

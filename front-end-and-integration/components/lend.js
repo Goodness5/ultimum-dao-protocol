@@ -141,8 +141,22 @@ export default function LendSection({theWalletAddress}) {
         </form>
         </div>
         <button type="submit" className='text-center py-[0.3cm] bg-[#502] font-[500] text-[#fff] w-[100%] mt-[0.5cm] rounded-md generalbutton cursor-pointer' onClick={(e) => {e.preventDefault();lendToken(loanID)}}>Fund Loan</button>
-        <div className="mt-[0.3cm] text-center">OR</div>
-        <button type="submit" className='text-center py-[0.3cm] bg-[#222] font-[500] text-[#fff] w-[100%] mt-[0.3cm] rounded-md generalbutton4 cursor-pointer' onClick={(e) => {e.preventDefault();claimCollateral(loanID)}}>Claim Collateral</button>
+        <div className="mt-[0.5cm] text-center">OR</div>
+        <div className=" bg-[#111] p-[0.5cm] rounded-xl mt-[0.5cm]" style={{boxShadow:"2px 2px 2px 2px #fff"}}>
+        <form>
+         <div className='p-[0.5cm] pb-[1cm] bg-[#eee] rounded-md'>
+         <div className='text-[#222] font-[500] clear-both'>
+         <span className="float-left text-[#000]">Collateral</span>
+          <span className='float-right'>Loan ID</span>
+         </div>
+         <div className='mt-[1.5cm] clear-both font-[500]'>
+         <span className="float-left text-[#000]">Only lender</span>
+         <input style={{display:"inline-block"}} className="w-[30%] float-right text-[120%] text-right bg-[#eee] outline-none text-[#000] placeholder-[#000]" type="text" id="loanID" name="loanID" onChange={(e) => setLoanID(e.target.value)} placeholder='0' />
+         </div>
+         </div>
+        </form>
+        </div>
+        <button type="submit" className='text-center py-[0.3cm] bg-[#222] font-[500] text-[#fff] w-[100%] mt-[0.5cm] rounded-md generalbutton4 cursor-pointer' onClick={(e) => {e.preventDefault();claimCollateral(loanID)}}>Claim Collateral</button>
         <div className="text-[90%] mt-[0.3cm]">You can only claim collateral if your borrower fails to pay within the specified duration of a loan!</div>
         </div>)
            :

@@ -292,7 +292,7 @@ const daoContractABI = [
     type: "function",
   },
 ];
-const daoContractAddress = "0xF20bbD18ce7a01382555fe8Bc9818ccfa1CC34Bf";
+const daoContractAddress = "0xA4D44C119e9f51b1f2f247C75D77D2C7719c882a";
 const daoContractReadSettings = new ethers.Contract(
   daoContractAddress,
   daoContractABI,
@@ -523,7 +523,7 @@ const tokenContractABI = [
     type: "function",
   },
 ];
-const tokenContractAddress = "0x56AFA932a2e147F956EC4b8E83Fb8Cb373f1661A";
+const tokenContractAddress = "0x3ecB57f648D39aB64E6A87ec355a8FD0c116aEb3";
 const tokenContractReadSettings = new ethers.Contract(
   tokenContractAddress,
   tokenContractABI,
@@ -728,7 +728,7 @@ const treasuryContractABI = [
     type: "function",
   },
 ];
-const treasuryContractAddress = "0x3dDdC4936ec019a18A3E2fF384aC9a655Cba4B66";
+const treasuryContractAddress = "0x3186971052B2aA1D0B4498AE96966C6F12088d32";
 const treasuryContractReadSettings = new ethers.Contract(
   treasuryContractAddress,
   treasuryContractABI,
@@ -961,7 +961,7 @@ const swapContractABI = [
   },
   { stateMutability: "payable", type: "receive" },
 ];
-const swapContractAddress = "0x87168FbdfB6859ABa9e53ad2Ff233E6604754084";
+const swapContractAddress = "0x8b5474E72096225AbED4C32eD21cc641372e3218";
 const swapContractReadSettings = new ethers.Contract(
   swapContractAddress,
   swapContractABI,
@@ -1295,7 +1295,7 @@ const nftContractABI = [
     type: "function",
   },
 ];
-const nftContractAddress = "0x3a2c25D1b2976Cc4897BDF9448ca929BCC1dFbDf";
+const nftContractAddress = "0xE4Ec85e33aAc5B0C48203A9371b864FA43d7D915";
 const nftContractReadSettings = new ethers.Contract(
   nftContractAddress,
   nftContractABI,
@@ -1503,7 +1503,7 @@ const stakeContractABI = [
     type: "function",
   },
 ];
-const stakeContractAddress = "0xC6AffA69811AECd5288fBEa2d80EA31C591086e1";
+const stakeContractAddress = "0x48BB61cA674E0e69E5605895f62393636cd51bB9";
 const stakeContractReadSettings = new ethers.Contract(
   stakeContractAddress,
   stakeContractABI,
@@ -1787,6 +1787,7 @@ const lendBorrowContractABI = [
       { internalType: "uint256", name: "_collateralamount", type: "uint256" },
       { internalType: "address", name: "_collateral", type: "address" },
       { internalType: "bool", name: "_isERC20", type: "bool" },
+      { internalType: "uint256", name: "_fundingDeadline", type: "uint256" },
     ],
     name: "createLoan",
     outputs: [],
@@ -1820,6 +1821,7 @@ const lendBorrowContractABI = [
     outputs: [
       {
         components: [
+          { internalType: "uint256", name: "loan_id", type: "uint256" },
           { internalType: "uint256", name: "amount", type: "uint256" },
           { internalType: "uint256", name: "interest", type: "uint256" },
           { internalType: "uint256", name: "duration", type: "uint256" },
@@ -1849,18 +1851,30 @@ const lendBorrowContractABI = [
     inputs: [{ internalType: "uint256", name: "_loanId", type: "uint256" }],
     name: "getLoanInfo",
     outputs: [
-      { internalType: "uint256", name: "amount", type: "uint256" },
-      { internalType: "uint256", name: "interest", type: "uint256" },
-      { internalType: "uint256", name: "duration", type: "uint256" },
-      { internalType: "uint256", name: "repaymentAmount", type: "uint256" },
-      { internalType: "uint256", name: "fundingDeadline", type: "uint256" },
-      { internalType: "uint256", name: "collateralAmount", type: "uint256" },
-      { internalType: "address", name: "borrower", type: "address" },
-      { internalType: "address payable", name: "lender", type: "address" },
-      { internalType: "address", name: "collateral", type: "address" },
-      { internalType: "bool", name: "isCollateralErc20", type: "bool" },
-      { internalType: "bool", name: "active", type: "bool" },
-      { internalType: "bool", name: "repaid", type: "bool" },
+      {
+        components: [
+          { internalType: "uint256", name: "loan_id", type: "uint256" },
+          { internalType: "uint256", name: "amount", type: "uint256" },
+          { internalType: "uint256", name: "interest", type: "uint256" },
+          { internalType: "uint256", name: "duration", type: "uint256" },
+          { internalType: "uint256", name: "repaymentAmount", type: "uint256" },
+          { internalType: "uint256", name: "fundingDeadline", type: "uint256" },
+          {
+            internalType: "uint256",
+            name: "collateralAmount",
+            type: "uint256",
+          },
+          { internalType: "address", name: "borrower", type: "address" },
+          { internalType: "address payable", name: "lender", type: "address" },
+          { internalType: "address", name: "collateral", type: "address" },
+          { internalType: "bool", name: "isCollateralErc20", type: "bool" },
+          { internalType: "bool", name: "active", type: "bool" },
+          { internalType: "bool", name: "repaid", type: "bool" },
+        ],
+        internalType: "struct P2PLending.Loan",
+        name: "",
+        type: "tuple",
+      },
     ],
     stateMutability: "view",
     type: "function",
@@ -1876,6 +1890,7 @@ const lendBorrowContractABI = [
     inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     name: "loans",
     outputs: [
+      { internalType: "uint256", name: "loan_id", type: "uint256" },
       { internalType: "uint256", name: "amount", type: "uint256" },
       { internalType: "uint256", name: "interest", type: "uint256" },
       { internalType: "uint256", name: "duration", type: "uint256" },
@@ -1950,7 +1965,7 @@ const lendBorrowContractABI = [
   },
   { stateMutability: "payable", type: "receive" },
 ];
-const lendBorrowContractAddress = "0xDbd7b0441C93E9C058afCF0246CC2a704433085B";
+const lendBorrowContractAddress = "0x6c3a658765748059ac5099C98a23374a8339608A";
 const lendBorrowContractReadSettings = new ethers.Contract(
   lendBorrowContractAddress,
   lendBorrowContractABI,

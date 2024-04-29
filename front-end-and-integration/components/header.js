@@ -68,7 +68,7 @@ export default function Header(){
       </div>
       <Link href="/#ultimumcomponents">
       <div className='ml-[1.2cm]' style={{display:"inline-block"}}>
-      <span className='text-[#fff] font-[600]'>DeFi, DAO, swap, stake, lend/borrow protocol on Scroll</span>
+      <span className='text-[#fff] font-[600]'>DeFi, DAO, swap, stake, P2P lend/borrow protocol on Scroll</span>
       <img src="images/scroll.png" width="20" className='ml-[0.2cm] rounded-[100%]' style={{display:"inline-block"}} />
       </div>
       </Link>

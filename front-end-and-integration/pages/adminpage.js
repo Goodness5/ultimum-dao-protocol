@@ -313,7 +313,7 @@ export default function AdminDashboard(){
            {displayComponent === "deletePostDisplayComponent" &&
             <form onSubmit={(e) => handleSubmitforDeletingBlogPost(e)} data-aos="fade-in" style={{transition:"0.5s ease-in-out"}}>
             <input type="number" className='px-[0.2cm] py-[0.3cm] bg-[#fff] outline-[#224] w-[100%] placeholder-[#555] mb-[0.5cm]' style={{border:"2px solid #ccf"}} required id="id" name="id" value={values.id} onChange={handleInput} placeholder="Input id of post to delete" />
-            {!success3 ? (<button type="submit" className='deletebutton px-[0.2cm] py-[0.3cm] rounded-md bg-[#500] w-[100%] text-[110%] font-[500] text-[#fff] mb-[0.5cm] text-center'>Delete blog post</button>) :
+            {!success3 ? (<button type="submit" className='generalbutton4 px-[0.2cm] py-[0.3cm] rounded-md bg-[#500] w-[100%] text-[110%] font-[500] text-[#fff] mb-[0.5cm] text-center'>Delete blog post</button>) :
             (<button className="px-[0.2cm] py-[0.3cm] bg-[#040] rounded-md w-[100%] text-[110%] font-[500] text-[#fff] mb-[0.5cm] text-center">Success! <img src="images/check.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}} /></button>)
             }
              {errorMessage3 && (<div className='text-center text-[#702] text-[120%] font-[500]'>Error!</div>)}

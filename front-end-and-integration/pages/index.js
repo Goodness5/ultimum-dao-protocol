@@ -61,7 +61,7 @@ export default function Home(){
    <div className='mt-[1cm] text-center lg:text-[140%] text-[120%] lg:mx-[20%] md:mx-[10%] mx-[5%] p-[1cm] lg:px-[2cm] text-[#ccc] bg-[rgba(0,0,0,0.9)]' style={{border:"1px solid #502"}}>
     <div data-aos="fade-in" className='info1' style={{transition:"0.5s ease-in-out"}}>
      Ultimum DAO - Using the DAO as a powerful tool, Ultimum protocol users are able to engage in governance and that includes but not limited to decision making, 
-     creation of proposals, view proposal details and voting activities to steer the ecosystem forward. This democratic approach ensures transparency and decentralisation in the ecosystem.
+     creation of proposals, view proposal details and voting activities to steer the protocol forward. This democratic approach ensures transparency and decentralisation in the ecosystem.
      Become an active member of the DAO to enjoy full Ultimum benefits. To join DAO, please ensure to obtain the Ultimum NFT which symbolizes your membership of the DAO. 
     </div>
     <div data-aos="fade-in" className='info2' style={{transition:"0.5s ease-in-out"}}>
@@ -75,20 +75,20 @@ export default function Home(){
       supported tokens with low gas fees. New tokens are added upon approval by the DAO. Our swap dApp is DAO-governed and designed to provide the best user experience and interface to our users.
     </div>
     <div data-aos="fade-in" className='info4' style={{transition:"0.5s ease-in-out"}}>
-      P2P Lending/Borrowing - Our users can participate in lending/borrowing activities of supported tokens. When you lend to Ultimum, you get rewarded hugely from the 
-      Ultimum pool (your funds are secured with our well audited security algorithm). When you borrow from Ultimum, ensure to present a collateral and pay back with interest. 
+      P2P Lending/Borrowing - Our users can participate in P2P lending/borrowing activities of supported tokens. When you lend to Ultimum, you get rewarded hugely with interest 
+      (your funds are secured with our well audited security algorithm). When you borrow from Ultimum, ensure to present a collateral and pay back with interest. 
       Participate in Ultimum DAO governance to determine the next supported token.
     </div>
     <div data-aos="fade-in" className='info5' style={{transition:"0.5s ease-in-out"}}>
     Treasury/Token - The Ultimum token (ULT) is the native token of the Ultimum Protocol and is backed by the Ultimum treasury. With a clear go-to-market strategy, the Ultimum 
-    treasury ensures effective management of the Ultimum token (ULT) and liquidity and minimize risks. 
+    treasury ensures effective management of the Ultimum token (ULT), liquidity and minimize risks. 
     This treasury will also optimize financial operations that support product development. If per adventure, ULT goes below 100% of its initial value during the bear market, the treasury 
     acts as a liquidity provider to manage the token price and ensure its stability across all platforms. All trading fees from the Ultimum dApps also go to the treasury.
     </div>
    </div>
    <div className='mt-[1cm] text-center' style={{transition:"0.3s ease-in-out"}}>
     <Link href="/dashboard"><button className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton ecobutton' style={{border:"2px solid #502"}}>Explore Ecosystem <img src="images/blockchain.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link>
-    <Link href="https://github.com/Goodness5/ultimum-protocol"><button className='m-[0.2cm] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton docbutton' style={{border:"2px solid #502"}}>Documentation <img src="images/documentation.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link>
+    <Link href="https://github.com/Goodness5/ultimum-dao-protocol"><button className='m-[0.2cm] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton docbutton' style={{border:"2px solid #502"}}>Documentation <img src="images/documentation.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link>
     <Link href="/dashboard"><button className='m-[0.2cm] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton daobutton' style={{border:"2px solid #502"}}>Ultimum DAO <img src="images/dao.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link>
    </div>
    {allowAutoNav ? (<div className='text-center mt-[1cm]'>You will be automatically navigated to the dashboard in {count} seconds....</div>) : 
@@ -108,7 +108,7 @@ export default function Home(){
     <div className='grid lg:grid-cols-3 grid-cols-1 gap-4'>
       <div className='grid-cols-1 lg:col-span-2 col-span-3'>
       <div className='lg:h-[15.85cm] h-[7cm] rounded-xl lg:p-[1cm] p-[0.5cm] homepageswapdiv' style={{backgroundImage:"url(images/ultimumswap.jpg)", boxShadow:"2px 2px 10px 1px #502"}}>
-        <div className='lg:text-[200%] text-[150%] lg:mt-[10%] mt-[3%] text-[#fff] font-[500]'>Best Swap on Ethereum Layer 2<br /><span className='lg:text-[70%] text-[60%] text-[#ccc]'>(ChainLink Oracles integrated)</span></div>
+        <div className='lg:text-[200%] text-[150%] lg:mt-[10%] mt-[3%] text-[#fff] font-[500]'>Swap on Ethereum Layer 2<br /><span className='lg:text-[70%] text-[60%] text-[#ccc]'>(ChainLink Oracles integrated)</span></div>
         <div className='lg:text-[250%] md:text-[200%] text-[160%] mt-[3%] text-[#eee] font-[500]'>Live Now</div>
         <Link href="/dashboard"><button className='lg:mt-[10%] mt-[3%] rounded-md bg-[#111] px-[0.3cm] py-[0.2cm] text-[#fff] generalbutton2' style={{border:"2px solid #502"}}>Swap tokens</button></Link>
       </div>
@@ -143,7 +143,7 @@ export default function Home(){
             <div><img src="images/digital.png" width="70" className="m-[auto]" /></div>
         <div className="lg:text-[200%] md:text-[180%] text-[150%] font-[600] mt-[10%]">Reward system</div>
         <div className="lg:text-[120%] md:text-[110%] text-[105%] mt-[5%]"> 
-        With a robust reward system, Ultimum aims to reward users according to their usage of the platform. $ULT is rewarded for staking, lending and contribution to the governance 
+        With a robust reward system, Ultimum aims to reward users according to their usage of the platform. $ULT is rewarded for staking, lending and contributions to the governance 
         of the Ultimum DAO. Users can aslo earn $ULT in potential airdrops organised by the protocol in the future. To learn more about the reward system, visit Ultimum forum below.
         </div>
         <div className="mt-[5%]">

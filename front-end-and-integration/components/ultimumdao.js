@@ -65,6 +65,9 @@ export default function UltimumDAOSection({theWalletAddress, displayComponent}) 
             if (userNFTBalance < 1){
               setShowDAO(false)
             }
+            else if (userNFTBalance > 1){
+              setShowDAO(true)
+            }
             const getStakedTokenDetails = await stakeContractReadSettings.stakeassets(theWalletAddress, tokenContractAddress)
             const tokencapital = (getStakedTokenDetails.capital.toString()) *10 **-18
             setStakedTokenCapital(tokencapital)
@@ -73,7 +76,7 @@ export default function UltimumDAOSection({theWalletAddress, displayComponent}) 
           }
         }
         getTheData();  
-       }, [displayComponent, userETHBalance, userULTBalance, userNFTBalance, stakedTokenCapital, theWalletAddress, loading])
+       }, [displayComponent, userETHBalance, userULTBalance, userNFTBalance, stakedTokenCapital, theWalletAddress, showDAO, loading])
 
 
 

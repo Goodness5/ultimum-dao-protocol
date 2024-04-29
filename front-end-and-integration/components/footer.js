@@ -76,7 +76,7 @@ export default function Footer () {
     <div className='mb-[1cm]' style={{borderBottom:"2px solid #502"}}></div>
     <div className='text-center'>
         <div className='text-[#fff] text-[120%] mb-[0.2cm]'>
-          <span><span className="font-[500]">Ultimum</span> - The most efficient DeFi protocol on Scroll with a DAO, swap dApp, staking dApp, token, treasury, lending/borrowing dApp</span>
+          <span><span className="font-[500]">Ultimum</span> - The most efficient DeFi protocol on Scroll with a DAO, swap dApp, staking dApp, token, treasury, P2P lending/borrowing dApp</span>
           <Link href="https://scroll.io"><img src="images/scroll.png" width="30" className='ml-[0.3cm] rounded-[100%]' style={{display:"inline-block"}} /></Link>
         </div>
        <div className='text-[150%] text-[#fff]'>Copyright &copy; {new Date().getFullYear()}</div>

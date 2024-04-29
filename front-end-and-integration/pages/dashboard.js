@@ -138,7 +138,7 @@ export default function Dashboard(){
       <div className='p-[0.4cm] menuitems4' onClick={(e) => setDisplayComponent("borrow") & changeBg7(e)} style={{background:bgColor7}}>Borrow <img src="images/borrowing.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div>
       </div>
       <div className='mt-[30%] p-[0.5cm]' style={{display:"block"}}>
-       <div><Link href="https://github.com/Goodness5/ultimum-protocol"><button className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.15cm] text-[#fff]'>Docs <img src="images/documentation.png" width="17" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link></div>
+       <div><Link href="https://github.com/Goodness5/ultimum-dao-protocol"><button className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.15cm] text-[#fff]'>Docs <img src="images/documentation.png" width="17" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link></div>
        <Link href="https://discord.com"><img src="images/discord.png" width="35" className='m-[0.2cm]' style={{display:"inline-block"}}/></Link>
        <Link href="https://x.com"><img src="images/twitter.png" width="35" className='m-[0.2cm]' style={{display:"inline-block"}}/></Link>
       </div>
@@ -161,7 +161,7 @@ export default function Dashboard(){
       </div>
       <div className='my-[1cm]'><img src="images/arrow.png" onClick={(e) => setMountSmallMenu(false)} className='closedashboardsmallmenu mx-[auto] cursor-pointer' width="50" /></div>
       <div className='mt-[20%] p-[0.5cm]' style={{display:"block"}}>
-       <div><Link href="https://github.com/Goodness5/ultimum-protocol"><button onClick={(e) => setMountSmallMenu(false)} className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.15cm] text-[#fff]'>Docs <img src="images/documentation.png" width="17" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link></div>
+       <div><Link href="https://github.com/Goodness5/ultimum-dao-protocol"><button onClick={(e) => setMountSmallMenu(false)} className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.15cm] text-[#fff]'>Docs <img src="images/documentation.png" width="17" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link></div>
        <Link href="https://discord.com"><img src="images/discord.png" width="35" className='m-[0.2cm]' onClick={(e) => setMountSmallMenu(false)} style={{display:"inline-block"}}/></Link>
        <Link href="https://x.com"><img src="images/twitter.png" width="35" className='m-[0.2cm]' onClick={(e) => setMountSmallMenu(false)} style={{display:"inline-block"}}/></Link>
       </div>
@@ -173,13 +173,13 @@ export default function Dashboard(){
    {mountSmallMenu ? (<span></span>) : (<div className='dashboardsmallmenubar clear-both text-right w-[100%] px-[1cm] pt-[0.3cm]'><img src="images/menu-bar.png" className='cursor-pointer' onClick={(e) => setMountSmallMenu(true)} width="30" style={{display:"inline-block"}}/></div>)}
    <div className='w-[100%]'>
    <img src="images/scroll.png" width="100" className='lg:mt-[10%] mt-[20%] ml-[5%] rounded-[100%] blurimage1' style={{position:"absolute"}} />
-   <img src="images/scroll.png" width="100" className='lg:mt-[15%] mt-[25%] lg:ml-[85%] ml-[75%] rounded-[100%] blurimage2' style={{position:"absolute"}} />
+   <img src="images/scroll.png" width="100" className='lg:mt-[15%] mt-[25%] lg:ml-[85%] ml-[65%] rounded-[100%] blurimage2' style={{position:"absolute"}} />
    <img src="images/logo.png" width="200" className='lg:mt-[35%] mt-[100%] ml-[8%] blurimage2' style={{position:"absolute"}} />
-   <img src="images/logo.png" width="200" className='lg:mt-[45%] mt-[105%] lg:ml-[80%] ml-[50%] blurimage1' style={{position:"absolute"}} />
+   <img src="images/logo.png" width="200" className='lg:mt-[45%] mt-[105%] lg:ml-[85%] ml-[50%] blurimage1' style={{position:"absolute"}} />
    </div>
    <div className='w-[100%] p-[0.5cm] mt-[1cm]' style={{position:"absolute"}}>
     {displayComponent === "mybalances" && (<div id="mybalances" data-aos="zoom-in" className='dashboardcomponent bg-[#111] lg:mx-[2cm] md:mx-[1cm] p-[0.5cm] rounded-xl mb-[1cm]' style={{boxShadow:"2px 2px 2px 2px #502", zIndex:"9999"}}>
-      <MyBalancesSection theWalletAddress={theWalletAddress} displayComponent={displayComponent} setDisplayComponent = {setDisplayComponent} changeBg3 = {changeBg3} changeBg4 = {changeBg4} changeBg5 = {changeBg5} />
+      <MyBalancesSection theWalletAddress={theWalletAddress} displayComponent={displayComponent} setDisplayComponent = {setDisplayComponent} changeBg3 = {changeBg3} changeBg4 = {changeBg4} changeBg5 = {changeBg5} changeBg6={changeBg6} changeBg7={changeBg7} />
     </div>)} 
     {displayComponent === "protocolmetrics" && (<div id="protocolmetrics" data-aos="zoom-in" className='dashboardcomponent bg-[#111] lg:mx-[2cm] md:mx-[1cm] p-[0.5cm] rounded-xl mb-[1cm]' style={{boxShadow:"2px 2px 2px 2px #502", zIndex:"9999"}}>
     <ProtocolMetricsSection theWalletAddress={theWalletAddress} displayComponent={displayComponent} />
