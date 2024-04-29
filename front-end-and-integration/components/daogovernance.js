@@ -152,6 +152,55 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
          }
        }
 
+          // function to upvote proposals from view all proposals
+       const upvoteProposalFromView = async (initialProposalID, initialValue) => {
+        setLoading(true)
+        const ethereum = (window).ethereum;
+        const accounts = await ethereum.request({
+             method: "eth_requestAccounts",
+         })
+          // first account in MetaMask
+         const walletAddress = accounts[0]; 
+         const provider = new ethers.providers.Web3Provider(ethereum);
+         const signer = provider.getSigner(walletAddress);
+         const daoContractWriteSettings = new ethers.Contract(daoContractAddress, daoContractABI, signer)
+         try {
+            const voteProposal = await daoContractWriteSettings.connect(signer).vote(initialProposalID, initialValue)
+            showAndSetViewProposals()
+         } catch (error) {
+            console.log(error)
+            setLoading(false)
+         }
+         finally {
+            setLoading(false)
+         }
+       }
+
+        // function to downvote proposals from view all proposals
+       const downvoteProposalFromView = async (initialProposalID, initialValue) => {
+        setLoading(true)
+        const ethereum = (window).ethereum;
+        const accounts = await ethereum.request({
+             method: "eth_requestAccounts",
+         })
+          // first account in MetaMask
+         const walletAddress = accounts[0]; 
+         const provider = new ethers.providers.Web3Provider(ethereum);
+         const signer = provider.getSigner(walletAddress);
+         const daoContractWriteSettings = new ethers.Contract(daoContractAddress, daoContractABI, signer)
+         try {
+            const voteProposal = await daoContractWriteSettings.connect(signer).vote(initialProposalID, initialValue)
+            showAndSetViewProposals()
+         } catch (error) {
+            console.log(error)
+            setLoading(false)
+         }
+         finally {
+            setLoading(false)
+         }
+       }
+       
+
      // function to view proposals
      const [allProposals, setAllProposals] = useState([])
      const [numOfProposals, setnumOfProposals] = useState()
@@ -290,8 +339,8 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
           <div>
               <div className="proposal mt-[0.3cm]">{proposal.description}</div>
               <div className="mt-[0.5cm]">
-                  <div style={{display:"inline-block"}}><img src="images/up-arrow.png" width="20" style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.forVotes).toString())}</span></div>
-                  <div className="ml-[1cm]" style={{display:"inline-block"}}><img src="images/down-arrow.png" width="20" style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.againstVotes).toString())}</span></div>
+                  <div style={{display:"inline-block"}}><img src="images/up-arrow.png" width="20" className="cursor-pointer" onClick={(e) => {e.preventDefault(); upvoteProposalFromView((proposal.id).toString(), true)}} style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.forVotes).toString())}</span></div>
+                  <div className="ml-[1cm]" style={{display:"inline-block"}}><img src="images/down-arrow.png" width="20" className="cursor-pointer" onClick={(e) => {e.preventDefault(); downvoteProposalFromView((proposal.id).toString(), false)}} style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.againstVotes).toString())}</span></div>
                   {((proposal.creator).toLowerCase() === theWalletAddress &  proposal.status == true) ? (<div className="mt-[0.5cm] text-right"><span className="cursor-pointer" onClick={(e) => {e.preventDefault(); closeProposal((proposal.id).toString())}}><span className="text-[80%]">Close Proposal</span> <img src="images/crossed.png" width="20" style={{display:"inline-block"}}/></span></div>) : (<span></span>)}
               </div>
           </div>
@@ -318,8 +367,8 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
       <div>
           <div className="proposal mt-[0.3cm]">{proposal.description}</div>
           <div className="mt-[0.5cm]">
-              <div style={{display:"inline-block"}}><img src="images/up-arrow.png" width="20" style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.forVotes).toString())}</span></div>
-              <div className="ml-[1cm]" style={{display:"inline-block"}}><img src="images/down-arrow.png" width="20" style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.againstVotes).toString())}</span></div>
+              <div style={{display:"inline-block"}}><img src="images/up-arrow.png" width="20" className="cursor-pointer" onClick={(e) => {e.preventDefault(); upvoteProposalFromView((proposal.id).toString(), true)}} style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.forVotes).toString())}</span></div>
+              <div className="ml-[1cm]" style={{display:"inline-block"}}><img src="images/down-arrow.png" width="20" className="cursor-pointer" onClick={(e) => {e.preventDefault(); downvoteProposalFromView((proposal.id).toString(), false)}} style={{display:"inline-block"}}/> <span>{Intl.NumberFormat().format((proposal.againstVotes).toString())}</span></div>
               {((proposal.creator).toLowerCase() === theWalletAddress &  proposal.status == true) ? (<div className="mt-[0.5cm] text-right"><span className="cursor-pointer" onClick={(e) => {e.preventDefault(); closeProposal((proposal.id).toString())}}><span className="text-[80%]">Close Proposal</span> <img src="images/crossed.png" width="20" style={{display:"inline-block"}}/></span></div>) : (<span></span>)}
           </div>
       </div>
