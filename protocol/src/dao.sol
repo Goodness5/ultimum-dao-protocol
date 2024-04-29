@@ -158,7 +158,7 @@ contract DAO {
 
     function removeProposal(
         uint _id
-    ) public proposal_time_check(_id, 5 minutes) onlyMember{
+    ) public proposal_time_check(_id, 2 days) onlyMember{
         require(
             msg.sender == proposals[_id].creator,
             "Only the creator can remove the proposal"
@@ -197,7 +197,7 @@ contract DAO {
 
     function closeProposal(
         uint _id
-    ) public proposal_time_out(_id, 10 minutes) onlyMember {
+    ) public proposal_time_out(_id, 7 days) onlyMember {
         Proposal storage proposal = proposals[_id];
         require(
             msg.sender == proposal.creator,

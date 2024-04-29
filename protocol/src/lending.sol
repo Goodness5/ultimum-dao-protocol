@@ -29,6 +29,7 @@ contract P2PLending is Ownable {
     uint public constant SERVICE_FEE_PERCENTAGE = 2;
 
     struct Loan {
+        uint loan_id;
         uint amount;
         uint interest;
         uint duration;
@@ -117,7 +118,8 @@ contract P2PLending is Ownable {
         uint _duration,
         uint _collateralamount,
         address _collateral,
-        bool _isERC20
+        bool _isERC20,
+        uint _fundingDeadline
     ) external payable isCollateral(_collateral) {
         require(
             _amount >= MIN_LOAN_AMOUNT && _amount <= MAX_LOAN_AMOUNT,
@@ -129,16 +131,16 @@ contract P2PLending is Ownable {
         );
         require(_duration > 0, "Loan duration must be greater than 0");
         uint _repaymentAmount = _amount + (_amount * _interest) / 100;
-        uint _fundingDeadline = block.timestamp + (1 days);
         uint loanId = loanCount++;
         Loan storage loan = loans[loanId];
         loan.amount = _amount;
+        loan.loan_id = loanId;
         loan.interest = _interest;
-        loan.duration = _duration;
+        loan.duration = _duration + block.timestamp;
         loan.collateral = _collateral;
         loan.collateralAmount = _collateralamount;
         loan.repaymentAmount = _repaymentAmount;
-        loan.fundingDeadline = _fundingDeadline;
+        loan.fundingDeadline = _fundingDeadline + block.timestamp;
         loan.borrower = msg.sender;
         loan.isCollateralErc20 = _isERC20;
         loan.lender = payable(address(0));
@@ -183,10 +185,10 @@ contract P2PLending is Ownable {
             msg.sender != loan.borrower,
             "Borrower cannot fund their own loan"
         );
-        require(
-            block.timestamp <= loan.fundingDeadline,
-            "Loan funding deadline has passed"
-        );
+        if (block.timestamp > loan.fundingDeadline){
+            loan.active = false;
+            revert("deadline passed");
+        }
         payable(address(this)).transfer(loan.amount);
         loan.lender = payable(msg.sender);
         loan.active = false;
@@ -202,16 +204,14 @@ contract P2PLending is Ownable {
 
         uint interestAmount = (loan.amount * loan.interest) / 100;
         uint repaymentAmount = loan.amount + interestAmount;
-        require(msg.value >= repaymentAmount, "Insufficient repayment amount");
-
         // Deduct service fee from the repayment amount
         uint serviceFee = (repaymentAmount * SERVICE_FEE_PERCENTAGE) / 100;
         uint amountAfterFee = repaymentAmount - serviceFee;
 
         // Transfer repayment amount minus service fee to the lender
         loan.lender.transfer(amountAfterFee);
-        // Transfer service_charge to treasury.
         payable(treasuryAddress).transfer(serviceFee);
+        // Transfer service_charge to treasury.
 
         // Transfer collateral back to the borrower
         if (loan.isCollateralErc20) {
@@ -244,42 +244,24 @@ contract P2PLending is Ownable {
         loan.active = false;
     }
 
-    function getLoanInfo(
-        uint _loanId
-    )
-        external
-        view
-        returns (
-            uint amount,
-            uint interest,
-            uint duration,
-            uint repaymentAmount,
-            uint fundingDeadline,
-            uint collateralAmount,
-            address borrower,
-            address payable lender,
-            address collateral,
-            bool isCollateralErc20,
-            bool active,
-            bool repaid
-        )
-    {
-        Loan storage loan = loans[_loanId];
-        return (
-            loan.amount,
-            loan.interest,
-            loan.duration,
-            loan.repaymentAmount,
-            loan.fundingDeadline,
-            loan.collateralAmount,
-            loan.borrower,
-            loan.lender,
-            loan.collateral,
-            loan.isCollateralErc20,
-            loan.active,
-            loan.repaid
-        );
-    }
+function getLoanInfo(uint _loanId) external view returns (Loan memory) {
+    Loan storage loan = loans[_loanId];
+    return Loan(
+        loan.loan_id,
+        loan.amount,
+        loan.interest,
+        loan.duration,
+        loan.repaymentAmount,
+        loan.fundingDeadline,
+        loan.collateralAmount,
+        loan.borrower,
+        loan.lender,
+        loan.collateral,
+        loan.isCollateralErc20,
+        loan.active,
+        loan.repaid
+    );
+}
 
     function claimCollateral(uint _loanId) external onlyActiveLoan(_loanId) {
         Loan storage loan = loans[_loanId];
@@ -326,8 +308,29 @@ contract P2PLending is Ownable {
 
     function withdrawFunds(uint _loanId) external onlyBorrower(_loanId) {
         Loan storage loan = loans[_loanId];
-        require(!loan.active, "Loan is still active");
+        if (block.timestamp > loan.fundingDeadline){
+            loan.active = false;
+             if (loan.isCollateralErc20) {
+            // If collateral is ERC20
+            require(
+                IERC20(loan.collateral).transfer(
+                    msg.sender,
+                    loan.collateralAmount
+                ),
+                "Failed to transfer ERC20 collateral"
+            );
+        } else {
+            // If collateral is ERC721 NFT
+            IERC721(loan.collateral).transferFrom(
+                address(this),
+                msg.sender,
+                loan.collateralAmount
+            );
+        }
+        }else{
         payable(msg.sender).transfer(loan.amount);
+        }
+       
     }
 
     // function withdrawServiceCharges() external onlyOwner {
