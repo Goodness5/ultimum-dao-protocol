@@ -12,7 +12,7 @@ This protocol features a robust combination of smart contracts and front end and
 Solidity, Foundry, ChainLink Oracles. OpenZeppelin
 
 ### Front end and Integration Tools
-Ethers.js, Scrollscan Token Tracker, Next.js, Node.js, JavaScript, Tailwind CSS, Trading View widgets API, Filebase storage, PostgreSQL
+Ethers.js, Scrollscan Token Tracker, Next.js, Node.js, JavaScript, Tailwind CSS, Trading View Live API, Filebase storage, PostgreSQL
 
 ## The Ultimum Protocol's Products
 
