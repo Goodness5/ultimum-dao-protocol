@@ -65,7 +65,7 @@ export default function UltimumDAOSection({theWalletAddress, displayComponent}) 
             if (userNFTBalance < 1){
               setShowDAO(false)
             }
-            else if (userNFTBalance > 1){
+            else if (userNFTBalance > 0){
               setShowDAO(true)
             }
             const getStakedTokenDetails = await stakeContractReadSettings.stakeassets(theWalletAddress, tokenContractAddress)
