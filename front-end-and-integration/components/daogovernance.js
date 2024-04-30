@@ -89,7 +89,6 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
          const daoContractWriteSettings = new ethers.Contract(daoContractAddress, daoContractABI, signer)
          try {
             const joindao = await daoContractWriteSettings.connect(signer).addMember(walletAddress, username)
-            showAndSetViewProposals()
          } catch (error) {
             console.log(error)
             setLoading(false)
