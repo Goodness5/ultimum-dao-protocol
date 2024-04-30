@@ -66,7 +66,6 @@ export default function DAOgovernance ({daoContractReadSettings, daoContractAddr
              else if (getMembershipStatus == false){
              setmembershipStatusColor("#ff0")
              setMembership("non-member")
-             showAndSetJoinDAO()
              }
             } catch (error) {
               console.log(error)
